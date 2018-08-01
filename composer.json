@@ -1,0 +1,41 @@
+{
+    "name": "yiisoft/yii-twig",
+    "description": "Yii Framework Twig Extension",
+    "keywords": ["yii", "twig", "renderer"],
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/yiisoft/yii-twig/issues",
+        "forum": "http://www.yiiframework.com/forum/",
+        "wiki": "http://www.yiiframework.com/wiki/",
+        "irc": "irc://irc.freenode.net/yii",
+        "source": "https://github.com/yiisoft/yii-twig"
+    },
+    "authors": [
+        {
+            "name": "Alexander Makarov",
+            "email": "sam@rmcreative.ru"
+        }
+    ],
+    "require": {
+        "yiisoft/core": "1.0.0@dev",
+        "twig/twig": "~2.0"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "yii\\twig\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "yiiunit\\twig\\": "tests/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
