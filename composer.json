@@ -1,15 +1,15 @@
 {
-    "name": "yiisoft/yii2-twig",
-    "description": "The Twig integration for the Yii framework",
-    "keywords": ["yii2", "twig", "renderer"],
-    "type": "yii2-extension",
+    "name": "yiisoft/yii-twig",
+    "description": "Yii Framework Twig Extension",
+    "keywords": ["yii", "twig", "renderer"],
+    "type": "library",
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/yiisoft/yii2-twig/issues",
+        "issues": "https://github.com/yiisoft/yii-twig/issues",
         "forum": "http://www.yiiframework.com/forum/",
         "wiki": "http://www.yiiframework.com/wiki/",
         "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2-twig"
+        "source": "https://github.com/yiisoft/yii-twig"
     },
     "authors": [
         {
@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "~2.0.4",
+        "yiisoft/core": "1.0.0@dev",
         "twig/twig": "~2.0"
     },
     "repositories": [
@@ -35,7 +35,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0.x-dev"
+            "dev-master": "1.0.x-dev"
         }
     }
 }
