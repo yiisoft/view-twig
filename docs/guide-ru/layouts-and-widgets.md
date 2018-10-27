@@ -108,7 +108,7 @@ class SiteController extends Controller
 
 ```twig
     {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# asset root for yii advanced template #}
-    {{   void(this.beginPage()) }}
+    {{ void(this.beginPage()) }}
     <!DOCTYPE html>
     <html lang="{{ app.language }}">
         <head>
@@ -116,10 +116,10 @@ class SiteController extends Controller
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>{{ html.encode(this.title) }}</title>
             {{ html.csrfMetaTags | raw }}
-            {{   void(this.head) }}
+            {{ void(this.head) }}
         </head>
         <body>
-            {{   void(this.beginBody()) }}
+            {{ void(this.beginBody()) }}
             <section id="header">
                 {# header content #}
             </section>
@@ -129,10 +129,10 @@ class SiteController extends Controller
                     {# footer content #}
                 </div>
             </footer>
-            {{   void(this.endBody()) }}
+            {{ void(this.endBody()) }}
         </body>
     </html>
-    {{   void(this.endPage()) }}
+    {{ void(this.endPage()) }}
 ```
 
 Чтобы не использовать шаблон контроллера, необходимо задать значение `false` для свойства `$layout`. 

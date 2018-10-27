@@ -16,10 +16,10 @@
 ],
 ```
 
-Сконфигурировав один раз, вы можете использовать globals в любых ваших шаблонах Twig:
+Сконфигурировав один раз, вы можете использовать `globals` в любых ваших шаблонах Twig:
 
 ```twig
-Hello, {{name}}! {{ html.a('Please login', 'site/login') | raw }}.
+Hello, {{ name }}! {{ html.a('Please login', 'site/login') | raw }}.
 
 {{ GridView.widget({'dataProvider' : provider}) | raw }}
 ```
@@ -99,7 +99,7 @@ Hello, {{name}}! {{ html.a('Please login', 'site/login') | raw }}.
 и затем использовать в шаблонах:
 
 ```twig
-{% extends '@layouts/main.twig %}
+{% extends "@layouts/main.twig" %}
 ```
 
 ## Профилирование
