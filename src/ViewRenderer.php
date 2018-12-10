@@ -7,9 +7,10 @@
 
 namespace yii\twig;
 
-use Yii;
-use yii\base\View;
-use yii\base\ViewRenderer as BaseViewRenderer;
+use yii\di\Initiable;
+use yii\helpers\Yii;
+use yii\view\View;
+use yii\view\ViewRenderer as BaseViewRenderer;
 
 /**
  * TwigViewRenderer allows you to use Twig templates in views.
@@ -19,7 +20,7 @@ use yii\base\ViewRenderer as BaseViewRenderer;
  * @author Alexander Makarov <sam@rmcreative.ru>
  * @since 2.0
  */
-class ViewRenderer extends BaseViewRenderer
+class ViewRenderer extends BaseViewRenderer implements Initiable
 {
     /**
      * @var string the directory or path alias pointing to where Twig cache will be stored. Set to false to disable
@@ -111,13 +112,13 @@ class ViewRenderer extends BaseViewRenderer
     public $twigFallbackPaths = [];
 
 
-    public function init()
+    public function init(): void
     {
         // Create environment with empty loader
         $loader = new Twig_Empty_Loader();
         $this->twig = new \Twig_Environment($loader, array_merge([
             'cache' => Yii::getAlias($this->cachePath),
-            'charset' => Yii::$app->charset,
+            'charset' => Yii::getEncoding(),
         ], $this->options));
 
         // Adding custom globals (objects or static classes)
@@ -142,7 +143,7 @@ class ViewRenderer extends BaseViewRenderer
             $this->addExtensions($this->extensions);
         }
 
-        $this->twig->addGlobal('app', \Yii::$app);
+        $this->twig->addGlobal('app', Yii::getApp());
     }
 
     /**
@@ -165,7 +166,7 @@ class ViewRenderer extends BaseViewRenderer
             $this->addFallbackPaths($loader, $view->theme);
         }
 
-        $this->addAliases($loader, Yii::$aliases);
+        $this->addAliases($loader, Yii::get('aliases')->getAll());
         $this->twig->setLoader($loader);
 
         // Change lexer syntax (must be set after other settings)
