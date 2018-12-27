@@ -46,7 +46,7 @@ Namespace import:
 {{ use('/app/widgets') }}
 
 Class import:
-{{ use('/yii/widgets/ActiveForm') }}
+{{ use('/yii/view/widgets/ActiveForm') }}
 
 Aliased class import:
 {{ use({'alias' : '/app/widgets/MyWidget'}) }}
@@ -77,17 +77,17 @@ You have add these classes to [globals](additional-configuration.md#globals):
 ```
 // ....
 'view' => [
-    'class' => 'yii\web\View',
+    '__class' => 'yii\web\View',
     'renderers' => [
         'twig' => [
-            'class' => 'yii\twig\ViewRenderer',
+            'class' => '__yii\twig\ViewRenderer',
             'cachePath' => '@runtime/Twig/cache',
             'options' => [
                 'auto_reload' => true,
             ],
             'globals' => [
-                'Url' => ['class' => '\yii\helpers\Url'],
-                'MyClass' => ['class' => '\frontend\models\MyClass'],
+                'Url' => ['__class' => '\yii\helpers\Url'],
+                'MyClass' => ['__class' => '\frontend\models\MyClass'],
             ],
         ],
     ],
@@ -126,16 +126,16 @@ You can also use `render` method inside a view:
 
 ## Assets
 
-Assets could be registered the following way (since 2.0.4):
+Assets could be registered the following way:
 
 ```twig
-{{ register_asset_bundle('yii/web/JqueryAsset') }}
+{{ register_asset_bundle('yii/jquery/JqueryAsset') }}
 ```
 
 There's a bit more verbose syntax used previously:
 
 ```twig
-{{ use('yii/web/JqueryAsset') }}
+{{ use('yii/jquery/JqueryAsset') }}
 {{ register_jquery_asset() }}
 ```
 
@@ -157,7 +157,7 @@ There are two functions you can use for building URLs:
 
 Within Twig templates the following variables are always defined:
 
-- `app`, which equates to `\Yii::$app`
+- `app`, which equates to `\yii\helpers\Yii::$app`
 - `this`, which equates to the current `View` object
  
 ## Blocks

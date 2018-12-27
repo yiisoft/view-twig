@@ -12,7 +12,7 @@
 ```php
 'globals' => [
     'name' => 'Carsten',
-    'GridView' => ['class' => '\yii\grid\GridView'],
+    'GridView' => ['class' => '\yii\dataview\GridView'],
 ],
 ```
 
@@ -92,7 +92,7 @@ Hello, {{ name }}! {{ html.a('Please login', 'site/login') | raw }}.
 
 ```php
 'twigFallbackPaths' => [
-    'layouts' => '@app/views/layouts' //возможно использование yii2-алиасов
+    'layouts' => '@app/views/layouts' //возможно использование yii-алиасов
 ]
 ```
 

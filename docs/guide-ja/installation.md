@@ -10,13 +10,13 @@
 下記のコマンドを実行してください。
 
 ```
-php composer.phar require --prefer-dist yiisoft/yii2-twig
+php composer.phar require --prefer-dist yiisoft/yii-twig
 ```
 
 または、あなたの `composer.json` ファイルの `require` セクションに、
 
 ```
-"yiisoft/yii2-twig": "~2.0.0"
+"yiisoft/yii-twig": "^3.0"
 ```
 
 を追加してください。
@@ -27,24 +27,22 @@ Twig を使い始めるためには、`view` コンポーネントを下記の�
 
 ```php
 [
-    'components' => [
-        'view' => [
-            'class' => 'yii\web\View',
-            'renderers' => [
-                'twig' => [
-                    'class' => 'yii\twig\ViewRenderer',
-                    'cachePath' => '@runtime/Twig/cache',
-                    // Twig のオプションの配列
-                    'options' => [
-                        'auto_reload' => true,
-                    ],
-                    'globals' => [
-                        ['class' => '\yii\helpers\Html'],
-                    ],
-                    'uses' => ['yii\bootstrap'],
+    'view' => [
+        '__class' => 'yii\web\View',
+        'renderers' => [
+            'twig' => [
+                'class' => '__yii\twig\ViewRenderer',
+                'cachePath' => '@runtime/Twig/cache',
+                // Twig のオプションの配列
+                'options' => [
+                    'auto_reload' => true,
                 ],
-                // ...
+                'globals' => [
+                    ['__class' => '\yii\helpers\Html'],
+                ],
+                'uses' => ['yii\bootstrap'],
             ],
+            // ...
         ],
     ],
 ]
