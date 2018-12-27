@@ -45,7 +45,7 @@ title страницы:
 {{ use('/app/widgets') }}
 
 Импортирование класса:
-{{ use('/yii/widgets/ActiveForm') }}
+{{ use('/yii/view/widgets/ActiveForm') }}
 
 Импортирование класса с использованием псевдонима:
 {{ use({'alias' : '/app/widgets/MyWidget'}) }}
@@ -76,17 +76,17 @@ title страницы:
 ```php
 // ....
 'view' => [
-    'class' => 'yii\web\View',
+    '__class' => 'yii\web\View',
     'renderers' => [
         'twig' => [
-            'class' => 'yii\twig\ViewRenderer',
+            '__class' => 'yii\twig\ViewRenderer',
             'cachePath' => '@runtime/Twig/cache',
             'options' => [
                 'auto_reload' => true,
             ],
             'globals' => [
-                'Url' => ['class' => '\yii\helpers\Url'],
-                'MyClass' => ['class' => '\frontend\models\MyClass'],
+                'Url' => ['__class' => '\yii\helpers\Url'],
+                'MyClass' => ['__class' => '\frontend\models\MyClass'],
             ],
         ],
     ],
@@ -126,16 +126,16 @@ title страницы:
 
 ## Ассеты
 
-Ассеты могут быть зарегистрированы следующим способом (начиная с версии 2.0.4):
+Ассеты могут быть зарегистрированы следующим способом :
 
 ```twig
-{{ register_asset_bundle('yii/web/JqueryAsset') }}
+{{ register_asset_bundle('yii/jquery/JqueryAsset') }}
 ```
 
 Более подробный синтаксис:
 
 ```twig
-{{ use('yii/web/JqueryAsset') }}
+{{ use('yii/jquery/JqueryAsset') }}
 {{ register_jquery_asset() }}
 ```
 
@@ -157,7 +157,7 @@ title страницы:
 
 Следующие переменные всегда определены в шаблонах Twig:
 
-- `app`, которая соответствует `\Yii::$app`
+- `app`, которая соответствует `\yii\helpers\Yii::$app`
 - `this`, которая соответствует текущему объекту `View`
  
 ## Блоки

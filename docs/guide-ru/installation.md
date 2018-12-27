@@ -10,13 +10,13 @@
 Для этого запустите команду
 
 ```
-php composer.phar require --prefer-dist yiisoft/yii2-twig
+php composer.phar require --prefer-dist yiisoft/yii-twig
 ```
 
 или добавьте
 
 ```
-"yiisoft/yii2-twig": "~2.0.0"
+"yiisoft/yii-twig": "^3.0.0"
 ```
 
 в секцию require вашего composer.json.
@@ -27,24 +27,22 @@ php composer.phar require --prefer-dist yiisoft/yii2-twig
 
 ```php
 [
-    'components' => [
-        'view' => [
-            'class' => 'yii\web\View',
-            'renderers' => [
-                'twig' => [
-                    'class' => 'yii\twig\ViewRenderer',
-                    'cachePath' => '@runtime/Twig/cache',
-                    // Array of twig options:
-                    'options' => [
-                        'auto_reload' => true,
-                    ],
-                    'globals' => [
-                        'html' => ['class' => '\yii\helpers\Html'],
-                    ],
-                    'uses' => ['yii\bootstrap'],
+    'view' => [
+        '__class' => 'yii\web\View',
+        'renderers' => [
+            'twig' => [
+                '__class' => 'yii\twig\ViewRenderer',
+                'cachePath' => '@runtime/Twig/cache',
+                // Array of twig options:
+                'options' => [
+                    'auto_reload' => true,
                 ],
-                // ...
+                'globals' => [
+                    'html' => ['__class' => '\yii\helpers\Html'],
+                ],
+                'uses' => ['yii\bootstrap'],
             ],
+            // ...
         ],
     ],
 ]

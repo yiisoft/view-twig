@@ -46,7 +46,7 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 {{ use('/app/widgets') }}
 
 クラスのインポート:
-{{ use('/yii/widgets/ActiveForm') }}
+{{ use('/yii/view/widgets/ActiveForm') }}
 
 エイリアス化してクラスをインポート:
 {{ use({'alias' : '/app/widgets/MyWidget'}) }}
@@ -77,17 +77,17 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 ```
 // ....
 'view' => [
-    'class' => 'yii\web\View',
+    '__class' => 'yii\web\View',
     'renderers' => [
         'twig' => [
-            'class' => 'yii\twig\ViewRenderer',
+            '__class' => 'yii\twig\ViewRenderer',
             'cachePath' => '@runtime/Twig/cache',
             'options' => [
                 'auto_reload' => true,
             ],
             'globals' => [
-                'Url' => ['class' => '\yii\helpers\Url'],
-                'MyClass' => ['class' => '\frontend\models\MyClass'],
+                'Url' => ['__class' => '\yii\helpers\Url'],
+                'MyClass' => ['__class' => '\frontend\models\MyClass'],
             ],
         ],
     ],
@@ -126,16 +126,16 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
 
 ## アセット
 
-アセットは次の方法で登録することが出来ます (2.0.4 以降)。
+アセットは次の方法で登録することが出来ます。
 
 ```twig
-{{ register_asset_bundle('yii/web/JqueryAsset') }}
+{{ register_asset_bundle('yii/jquery/JqueryAsset') }}
 ```
 
 以前は、もう少し饒舌な文法が使われていました。
 
 ```twig
-{{ use('yii/web/JqueryAsset') }}
+{{ use('yii/jquery/JqueryAsset') }}
 {{ register_jquery_asset() }}
 ```
 
@@ -157,7 +157,7 @@ URL を構築するのに使える二つの関数があります。
 
 Twig のテンプレート内では、次の変数が常に定義されています。
 
-- `app` - `\Yii::$app` オブジェクト
+- `app` - `\yii\helpers\Yii::$app` オブジェクト
 - `this` - 現在の `View` オブジェクト
 
 ## ブロック

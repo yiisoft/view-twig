@@ -71,11 +71,11 @@ class SiteController extends Controller
 ```
 
 ```twig
-{{ use('yii/grid/GridView') }}
+{{ use('yii/dataview/GridView') }}
 {{ grid_view_widget({
     'dataProvider': dataProvider,
     'columns': [
-        {'class': '\\yii\\grid\\SerialColumn'},
+        {'__class': '\\yii\\dataview\\columns\\SerialColumn'},
         'id',
         'name',
         {
@@ -112,7 +112,7 @@ Here is code inside file `views/layout/main.twig`:
     <!DOCTYPE html>
     <html lang="{{ app.language }}">
         <head>
-            <meta charset="{{ app.charset }}">
+            <meta charset="{{ app.encoding }}">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>{{ html.encode(this.title) }}</title>
             {{ html.csrfMetaTags | raw }}
@@ -150,7 +150,7 @@ Beforehand let's add `global` inside config file:
 ```php
 'renderers' => [
     'twig' => [
-        'class' => 'yii\twig\ViewRenderer',
+        '__class' => 'yii\twig\ViewRenderer',
         'cachePath' => '@runtime/Twig/cache',
         // Array of twig options:
         'options' => [
@@ -158,7 +158,7 @@ Beforehand let's add `global` inside config file:
         ],
         'globals' => [
             //..
-            'url' => ['class' => '\yii\helpers\Url'], // new global
+            'url' => ['__class' => '\yii\helpers\Url'], // new global
             //..
         ],
         'uses' => ['yii\bootstrap'],
@@ -216,7 +216,7 @@ In order to show `Powered by Yii framework` add `global` inside config file:
         //..
         'globals' => [
             //..
-            'Yii' => ['class' => '\Yii'],
+            'Yii' => ['__class' => '\yii\helpers\Yii'],
             //..
         ],
         'uses' => ['yii\bootstrap'],
@@ -239,7 +239,7 @@ Here is a footer code:
 You can build forms the following way:
 
 ```
-{{ use('yii/widgets/ActiveForm') }}
+{{ use('yii/view/widgets/ActiveForm') }}
 {% set form = active_form_begin({
     'id' : 'login-form',
     'options' : {'class' : 'form-horizontal'},

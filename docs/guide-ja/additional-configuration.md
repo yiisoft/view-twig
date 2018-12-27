@@ -13,7 +13,7 @@ Yii のヘルパとあなた自身の変数を定義することが出来ます�
 'globals' => [
     'html' => ['class' => '\yii\helpers\Html'],
     'name' => 'Carsten',
-    'GridView' => ['class' => '\yii\grid\GridView'],
+    'GridView' => ['class' => '\yii\dataview\GridView'],
 ],
 ```
 
@@ -93,7 +93,7 @@ Hello, {{name}}! {{ html.a('ログインしてください', 'site/login') | raw
 
 ```php
 'twigFallbackPaths' => [
-    'layouts' => '@app/views/layouts' // yii2 のエイリアスが使えます
+    'layouts' => '@app/views/layouts' // yii のエイリアスが使えます
 ]
 ```
 

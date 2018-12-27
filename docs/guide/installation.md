@@ -10,41 +10,39 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist yiisoft/yii2-twig
+php composer.phar require --prefer-dist yiisoft/yii-twig
 ```
 
 or add
 
 ```
-"yiisoft/yii2-twig": "~2.0.0"
+"yiisoft/yii-twig": "^3.0"
 ```
 
 to the require section of your composer.json.
 
 ## Configuring application
 
-In order to start using Twig you need to configure `view` component like the following:
+In order to start using Twig you need to configure the `view` component like the following:
 
 ```php
 [
-    'components' => [
-        'view' => [
-            'class' => 'yii\web\View',
-            'renderers' => [
-                'twig' => [
-                    'class' => 'yii\twig\ViewRenderer',
-                    'cachePath' => '@runtime/Twig/cache',
-                    // Array of twig options:
-                    'options' => [
-                        'auto_reload' => true,
-                    ],
-                    'globals' => [
-                        'html' => ['class' => '\yii\helpers\Html'],
-                    ],
-                    'uses' => ['yii\bootstrap'],
+    'view' => [
+        '__class' => 'yii\web\View',
+        'renderers' => [
+            'twig' => [
+                '__class' => 'yii\twig\ViewRenderer',
+                'cachePath' => '@runtime/Twig/cache',
+                // Array of twig options:
+                'options' => [
+                    'auto_reload' => true,
                 ],
-                // ...
+                'globals' => [
+                    'html' => ['class' => '\yii\helpers\Html'],
+                ],
+                'uses' => ['yii\bootstrap'],
             ],
+            // ...
         ],
     ],
 ]

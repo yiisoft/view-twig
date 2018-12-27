@@ -71,11 +71,11 @@ class SiteController extends Controller
 ```
 
 ```twig
-{{ use('yii/grid/GridView') }}
+{{ use('yii/dataview/GridView') }}
 {{ grid_view_widget({
     'dataProvider': dataProvider,
     'columns': [
-        {'class': '\\yii\\grid\\SerialColumn'},
+        {'class': '\\yii\\dataview\\columns\\SerialColumn'},
         'id',
         'name',
         {
@@ -112,7 +112,7 @@ class SiteController extends Controller
     <!DOCTYPE html>
     <html lang="{{ app.language }}">
         <head>
-            <meta charset="{{ app.charset }}">
+            <meta charset="{{ app.encoding }}">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>{{ html.encode(this.title) }}</title>
             {{ html.csrfMetaTags | raw }}
@@ -150,7 +150,7 @@ class SiteController extends Controller
 ```php
 'renderers' => [
     'twig' => [
-        'class' => 'yii\twig\ViewRenderer',
+        '__class' => 'yii\twig\ViewRenderer',
         'cachePath' => '@runtime/Twig/cache',
         // twig のオプションの配列
         'options' => [
@@ -158,7 +158,7 @@ class SiteController extends Controller
         ],
         'globals' => [
             //..
-            'url' => ['class' => '\yii\helpers\Url'], // 新しい global
+            'url' => ['__class' => '\yii\helpers\Url'], // 新しい global
             //..
         ],
         'uses' => ['yii\bootstrap'],
@@ -216,7 +216,7 @@ class SiteController extends Controller
         //..
         'globals' => [
             //..
-            'Yii' => ['class' => '\Yii'],
+            'Yii' => ['class' => '\yii\helpers\Yii'],
             //..
         ],
         'uses' => ['yii\bootstrap'],
@@ -239,7 +239,7 @@ class SiteController extends Controller
 次のようにして、フォームを構築することが出来ます。
 
 ```
-{{ use('yii/widgets/ActiveForm') }}
+{{ use('yii/view/widgets/ActiveForm') }}
 {% set form = active_form_begin({
     'id' : 'login-form',
     'options' : {'class' : 'form-horizontal'},
