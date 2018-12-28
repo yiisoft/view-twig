@@ -1,10 +1,10 @@
-{{ use('yii/web/JqueryAsset') }}
+{{ use('yii/jquery/JqueryAsset') }}
 {{ register_jquery_asset() }}
 {{ begin_page() }}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="{{ app.charset }}"/>
+    <meta charset="{{ app.encoding }}"/>
     <title>{{ html.encode(this.title) }}</title>
     {{ head() }}
 </head>

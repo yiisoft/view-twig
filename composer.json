@@ -1,7 +1,11 @@
 {
     "name": "yiisoft/yii-twig",
     "description": "Yii Framework Twig Extension",
-    "keywords": ["yii", "twig", "renderer"],
+    "keywords": [
+        "yii",
+        "twig",
+        "renderer"
+    ],
     "type": "library",
     "license": "BSD-3-Clause",
     "support": {
@@ -17,16 +21,23 @@
             "email": "sam@rmcreative.ru"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "yiisoft/yii-core": "^3.0",
         "twig/twig": "~2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.3",
-        "yiisoft/yii-core": "dev-master",
-        "yiisoft/di": "dev-master",
-        "yiisoft/log": "dev-master",
-        "yiisoft/cache": "dev-master"
+        "hiqdev/composer-config-plugin": "^1.0@dev",
+        "wikimedia/composer-merge-plugin": "dev-master",
+        "yiisoft/di": "^3.0",
+        "yiisoft/log": "^3.0",
+        "yiisoft/yii-web": "^3.0",
+        "yiisoft/yii-jquery": "^3.0",
+        "yiisoft/active-record": "^3.0",
+        "yiisoft/db-sqlite": "^3.0",
+        "yiisoft/cache": "^3.0"
     },
     "repositories": [
         {
@@ -35,14 +46,24 @@
         }
     ],
     "autoload": {
-        "psr-4": { "yii\\twig\\": "src/" }
+        "psr-4": {
+            "yii\\twig\\": "src/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "yiiunit\\twig\\": "tests/" }
+        "psr-4": {
+            "yii\\twig\\tests\\": "tests/"
+        }
     },
     "extra": {
         "branch-alias": {
             "dev-master": "3.0.x-dev"
+        },
+        "config-plugin": {
+            "tests": "config/tests.php"
+        },
+        "merge-plugin": {
+            "include": "vendor/*/*/composer.assets.json"
         }
     }
 }
