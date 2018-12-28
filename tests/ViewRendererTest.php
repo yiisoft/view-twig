@@ -15,6 +15,7 @@ use yii\twig\tests\data\Order;
 use yii\twig\tests\data\Singer;
 use yii\view\Theme;
 use yii\web\UrlManager;
+use yii\jquery\JqueryAsset;
 
 /**
  * Tests Twig view renderer
@@ -27,7 +28,6 @@ class ViewRendererTest extends \yii\tests\TestCase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        Order::setUp();
     }
 
     protected function setUp()
@@ -185,7 +185,8 @@ class ViewRendererTest extends \yii\tests\TestCase
     {
         $view = $this->mockView();
         $content = $view->renderFile('@yii/twig/tests/views/register_asset_bundle.twig');
-        $this->assertEquals(Yii::getAlias('@npm/jquery/dist'), $content);
+        $bundle = $this->container->get(JqueryAsset::class);
+        $this->assertEquals($bundle->sourcePath, $content);
     }
 
     public function testPath()
