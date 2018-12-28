@@ -39,12 +39,12 @@
         "yiisoft/db-sqlite": "^3.0",
         "yiisoft/cache": "^3.0"
     },
-    "repositories": {
+    "repositories": [
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
         }
-    },
+    ],
     "autoload": {
         "psr-4": {
             "yii\\twig\\": "src/"
