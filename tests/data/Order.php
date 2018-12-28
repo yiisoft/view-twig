@@ -1,8 +1,8 @@
 <?php
 
-namespace yiiunit\twig\data;
+namespace yii\twig\tests\data;
 
-use yii\db\ActiveRecord;
+use yii\activerecord\ActiveRecord;
 use yii\db\Connection;
 
 /**
@@ -20,7 +20,8 @@ class Order extends ActiveRecord
     public static function getDb()
     {
         if (static::$db === null) {
-            static::$db = new Connection(['dsn' => 'sqlite::memory:']);
+            static::$db = new Connection();
+            static::$db->dsn = 'sqlite::memory:';
         }
         return static::$db;
     }
