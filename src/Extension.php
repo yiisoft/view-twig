@@ -72,7 +72,8 @@ class Extension extends \Twig_Extension
             new \Twig_SimpleFunction('*_widget', [$this, 'widget'], $options),
             new \Twig_SimpleFunction('path', [$this, 'path']),
             new \Twig_SimpleFunction('url', [$this, 'url']),
-            new \Twig_SimpleFunction('void', function(){}),
+            new \Twig_SimpleFunction('void', function () {
+            }),
             new \Twig_SimpleFunction('set', [$this, 'setProperty']),
         ];
 
