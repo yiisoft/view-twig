@@ -15,6 +15,9 @@ return [
             '@yii/tests/runtime' => $_ENV['TEST_RUNTIME_PATH'],
         ],
     ],
+    'cache' => [
+        '__class' => \yii\cache\FileCache::class,
+    ],
     'assetManager' => [
         '__class'   => yii\web\AssetManager::class,
         'basePath'  => '@webroot',
