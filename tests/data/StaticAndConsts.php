@@ -2,7 +2,6 @@
 
 namespace yii\twig\tests\data;
 
-
 class StaticAndConsts
 {
     const FIRST_CONST = 'I am a const!';

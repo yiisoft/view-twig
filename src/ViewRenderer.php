@@ -216,7 +216,7 @@ class ViewRenderer extends BaseViewRenderer implements Initiable
             }
         }
 
-        if ($theme instanceOf \yii\base\Theme && is_array($theme->pathMap)) {
+        if ($theme instanceof \yii\base\Theme && is_array($theme->pathMap)) {
             $pathMap = $theme->pathMap;
 
             if (isset($pathMap['@app/views'])) {

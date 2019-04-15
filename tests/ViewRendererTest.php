@@ -284,7 +284,7 @@ class ViewRendererTest extends \yii\tests\TestCase
                     new \Twig_SimpleFunction('add_*', function ($symbols, $val) {
                         return $val . $symbols;
                     }, ['is_safe' => ['html']]),
-                    'callable_rot13' => function($string) {
+                    'callable_rot13' => function ($string) {
                         return str_rot13($string);
                     },
                     'callable_add_*' => function ($symbols, $val) {
@@ -300,7 +300,7 @@ class ViewRendererTest extends \yii\tests\TestCase
                     new \Twig_SimpleFilter('add_*', function ($symbols, $val) {
                         return $val . $symbols;
                     }, ['is_safe' => ['html']]),
-                    'callable_rot13' => function($string) {
+                    'callable_rot13' => function ($string) {
                         return str_rot13($string);
                     },
                     'callable_add_*' => function ($symbols, $val) {
@@ -317,5 +317,4 @@ class ViewRendererTest extends \yii\tests\TestCase
         ];
         return $view;
     }
-
 }

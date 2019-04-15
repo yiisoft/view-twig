@@ -31,4 +31,3 @@ $_SERVER['SCRIPT_FILENAME'] = __FILE__;
 
     Yii::setContainer($container);
 })();
-
