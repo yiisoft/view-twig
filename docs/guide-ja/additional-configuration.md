@@ -32,7 +32,7 @@ Hello, {{name}}! {{ html.a('ログインしてください', 'site/login') | raw
 ```php
 'functions' => [
     'rot13' => 'str_rot13',
-    'truncate' => '\yii\helpers\StringHelper::truncate',
+    'truncate' => '\Yiisoft\Strings\StringHelper::truncate',
     new \Twig_SimpleFunction('rot14', 'str_rot13'),
     new \Twig_SimpleFunction('add_*', function ($symbols, $val) {
         return $val . $symbols;
