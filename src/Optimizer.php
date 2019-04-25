@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\twig;
+namespace Yiisoft\Yii\Twig;
 
 /**
  * Optimizer removes echo before special functions call and injects function name as an argument for the view helper

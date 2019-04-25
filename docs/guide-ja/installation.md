@@ -31,7 +31,7 @@ Twig を使い始めるためには、`view` コンポーネントを下記の�
         '__class' => 'yii\web\View',
         'renderers' => [
             'twig' => [
-                'class' => '__yii\twig\ViewRenderer',
+                '__class' => 'Yiisoft\Yii\Twig\ViewRenderer',
                 'cachePath' => '@runtime/Twig/cache',
                 // Twig のオプションの配列
                 'options' => [

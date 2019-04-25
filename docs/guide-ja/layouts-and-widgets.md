@@ -150,7 +150,7 @@ class SiteController extends Controller
 ```php
 'renderers' => [
     'twig' => [
-        '__class' => 'yii\twig\ViewRenderer',
+        '__class' => 'Yiisoft\Yii\Twig\ViewRenderer',
         'cachePath' => '@runtime/Twig/cache',
         // twig のオプションの配列
         'options' => [

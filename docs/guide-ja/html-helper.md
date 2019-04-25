@@ -5,7 +5,7 @@ Html ヘルパ
 
 ```php
 'extensions' => [
-    \yii\twig\html\HtmlHelperExtension::class,
+    \Yiisoft\Yii\Twig\Html\HtmlHelperExtension::class,
 ],
 ```
 そして、このようにして使います。

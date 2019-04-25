@@ -80,7 +80,7 @@ Twig の基礎を学ぶための最善のリソースは、[twig.sensiolabs.org]
     '__class' => 'yii\web\View',
     'renderers' => [
         'twig' => [
-            '__class' => 'yii\twig\ViewRenderer',
+            '__class' => 'Yiisoft\Yii\Twig\ViewRenderer',
             'cachePath' => '@runtime/Twig/cache',
             'options' => [
                 'auto_reload' => true,

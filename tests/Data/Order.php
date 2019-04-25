@@ -1,6 +1,6 @@
 <?php
 
-namespace yii\twig\tests\data;
+namespace Yiisoft\Yii\Twig\Tests\Data;
 
 /**
  * Class Order
