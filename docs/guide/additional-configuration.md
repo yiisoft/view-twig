@@ -109,7 +109,7 @@ To include [twig-profile](https://twig.symfony.com/doc/2.x/api.html#profiler-ext
 
 ```php
 'extensions' => [
-    \yii\twig\Profile::class
+    \Yiisoft\Yii\Twig\Profile::class
 ]
 ```
 

@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\twig;
+namespace Yiisoft\Yii\Twig;
 
 class GetAttr extends \Twig_Node_Expression
 {

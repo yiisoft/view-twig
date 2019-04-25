@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\twig;
+namespace Yiisoft\Yii\Twig;
 
 use Twig_Profiler_Profile;
 use yii\web\View;

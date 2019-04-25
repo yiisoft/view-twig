@@ -5,9 +5,9 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\twig\html;
+namespace Yiisoft\Yii\Twig\Html;
 
-class CssClassNode extends BaseClassNode
+class StyleClassNode extends BaseClassNode
 {
     public function __construct(\Twig_Token $name, $value, \Twig_Token $operator, $lineno = 0, $tag = null)
     {
@@ -19,9 +19,9 @@ class CssClassNode extends BaseClassNode
         $operator = $this->getAttribute('operator')->getValue();
         switch ($operator) {
             case '+':
-                return 'addCssClass';
+                return 'addCssStyle';
             case '-':
-                return 'removeCssClass';
+                return 'removeCssStyle';
             default:
                 throw new \Twig_Error("Operator {$operator} no found;");
         }

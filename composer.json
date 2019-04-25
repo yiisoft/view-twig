@@ -28,6 +28,7 @@
         "yiisoft/strings": "^3.0@dev",
         "yiisoft/yii-core": "^3.0@dev",
         "yiisoft/yii-web": "^3.0@dev",
+        "yiisoft/view": "^3.0@dev",
         "twig/twig": "~2.0"
     },
     "require-dev": {
@@ -47,12 +48,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "yii\\twig\\": "src/"
+            "Yiisoft\\Yii\\Twig\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "yii\\twig\\tests\\": "tests/"
+            "Yiisoft\\Yii\\Twig\\Tests\\": "tests/"
         }
     },
     "extra": {

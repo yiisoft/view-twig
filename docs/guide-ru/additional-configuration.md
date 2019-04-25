@@ -108,7 +108,7 @@ Hello, {{ name }}! {{ html.a('Please login', 'site/login') | raw }}.
 
 ```php
 'extensions' => [
-    \yii\twig\Profile::class
+    \Yiisoft\Yii\Twig\Profile::class
 ]
 ```
 

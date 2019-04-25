@@ -109,7 +109,7 @@ Hello, {{name}}! {{ html.a('ログインしてください', 'site/login') | raw
 
 ```php
 'extensions' => [
-    \yii\twig\Profile::class
+    \Yiisoft\Yii\Twig\Profile::class
 ]
 ```
 

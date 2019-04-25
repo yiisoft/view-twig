@@ -6,12 +6,12 @@ return [
     'app' => [
         'id' => 'testapp',
         'aliases' => [
-            '@webroot'           => '@yii/twig/tests/assets',
+            '@webroot'           => '@Yiisoft/Yii/Twig/Tests/assets',
             '@runtime'           => $_ENV['TEST_RUNTIME_PATH'],
-            '@app'               => '@yii/twig/tests/',
-            '@app/views'         => '@yii/twig/tests/views',
-            '@app/modules'       => '@yii/twig/tests/views',
-            '@app/widgets'       => '@yii/twig/tests/views',
+            '@app'               => '@Yiisoft/Yii/Twig/Tests/',
+            '@app/views'         => '@Yiisoft/Yii/Twig/Tests/views',
+            '@app/modules'       => '@Yiisoft/Yii/Twig/Tests/views',
+            '@app/widgets'       => '@Yiisoft/Yii/Twig/Tests/views',
             '@yii/tests/runtime' => $_ENV['TEST_RUNTIME_PATH'],
         ],
     ],

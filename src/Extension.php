@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\twig;
+namespace Yiisoft\Yii\Twig;
 
 use yii\base\InvalidCallException;
 use Yiisoft\Helpers\InflectorHelper;
