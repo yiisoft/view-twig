@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\twig\html;
+namespace Yiisoft\Yii\Twig\Html;
 
 abstract class BaseClassNode extends \Twig_Node
 {

@@ -80,7 +80,7 @@ You have add these classes to [globals](additional-configuration.md#globals):
     '__class' => 'yii\web\View',
     'renderers' => [
         'twig' => [
-            'class' => '__yii\twig\ViewRenderer',
+            'class' => '__Yiisoft\Yii\Twig\ViewRenderer',
             'cachePath' => '@runtime/Twig/cache',
             'options' => [
                 'auto_reload' => true,

@@ -31,7 +31,7 @@ php composer.phar require --prefer-dist yiisoft/yii-twig
         '__class' => 'yii\web\View',
         'renderers' => [
             'twig' => [
-                '__class' => 'yii\twig\ViewRenderer',
+                '__class' => 'Yiisoft\Yii\Twig\ViewRenderer',
                 'cachePath' => '@runtime/Twig/cache',
                 // Array of twig options:
                 'options' => [

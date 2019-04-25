@@ -5,7 +5,7 @@ To use [[\yii\helpers\Html]] in templates you must add a Twig extension
 
 ```php
 'extensions' => [
-    \yii\twig\html\HtmlHelperExtension::class,
+    \Yiisoft\Yii\Twig\Html\HtmlHelperExtension::class,
 ],
 ```
 and use it this way

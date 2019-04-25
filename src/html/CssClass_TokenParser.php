@@ -5,13 +5,13 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\twig\html;
+namespace Yiisoft\Yii\Twig\Html;
 
 class CssClass_TokenParser extends BaseCss_TokenParser
 {
     public function getNodeClass()
     {
-        return '\yii\twig\html\CssClassNode';
+        return '\Yiisoft\Yii\Twig\Html\CssClassNode';
     }
 
     public function getTag()

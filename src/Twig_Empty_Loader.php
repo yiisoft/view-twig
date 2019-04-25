@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\twig;
+namespace Yiisoft\Yii\Twig;
 
 /**
  * Empty loader used for environment initialisation

@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\twig;
+namespace Yiisoft\Yii\Twig;
 
 /**
  * GetAttrAdjuster swaps Twig_Node_Expression_GetAttr nodes with [[GetAttr]] nodes.

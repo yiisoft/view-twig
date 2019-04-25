@@ -79,7 +79,7 @@ title страницы:
     '__class' => 'yii\web\View',
     'renderers' => [
         'twig' => [
-            '__class' => 'yii\twig\ViewRenderer',
+            '__class' => 'Yiisoft\Yii\Twig\ViewRenderer',
             'cachePath' => '@runtime/Twig/cache',
             'options' => [
                 'auto_reload' => true,

@@ -31,7 +31,7 @@ In order to start using Twig you need to configure the `view` component like the
         '__class' => 'yii\web\View',
         'renderers' => [
             'twig' => [
-                '__class' => 'yii\twig\ViewRenderer',
+                '__class' => 'Yiisoft\Yii\Twig\ViewRenderer',
                 'cachePath' => '@runtime/Twig/cache',
                 // Array of twig options:
                 'options' => [

@@ -5,14 +5,13 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\twig\tests;
+namespace Yiisoft\Yii\Twig\Tests;
 
 use yii\helpers\FileHelper;
-use yii\web\AssetManager;
 use yii\web\View;
 use yii\helpers\Yii;
-use yii\twig\tests\data\Order;
-use yii\twig\tests\data\Singer;
+use Yiisoft\Yii\Twig\Tests\Data\Order;
+use Yiisoft\Yii\Twig\Tests\Data\Singer;
 use yii\view\Theme;
 use yii\web\UrlManager;
 use yii\jquery\JqueryAsset;
@@ -245,7 +244,7 @@ class ViewRendererTest extends \yii\tests\TestCase
     public function testStaticAndConsts()
     {
         $view = $this->mockView();
-        $view->renderers['twig']['globals']['staticClass'] = ['class' => \yii\twig\tests\data\StaticAndConsts::class];
+        $view->renderers['twig']['globals']['staticClass'] = ['class' => \Yiisoft\Yii\Twig\Tests\Data\StaticAndConsts::class];
         $content = $view->renderFile('@yii/twig/tests/views/staticAndConsts.twig');
         $this->assertContains('I am a const!', $content);
         $this->assertContains('I am a static var!', $content);
@@ -270,7 +269,7 @@ class ViewRendererTest extends \yii\tests\TestCase
         $view = new View($this->app, new Theme());
         $view->renderers = [
             'twig' => [
-                '__class' => \yii\twig\ViewRenderer::class,
+                '__class' => \Yiisoft\Yii\Twig\ViewRenderer::class,
                 'options' => [
                     'cache' => false,
                 ],
@@ -311,7 +310,7 @@ class ViewRendererTest extends \yii\tests\TestCase
                     'tag_comment' => [ '{*', '*}' ],
                 ],
                 'extensions' => [
-                    '\yii\twig\html\HtmlHelperExtension'
+                    '\Yiisoft\Yii\Twig\Html\HtmlHelperExtension'
                 ]
             ],
         ];

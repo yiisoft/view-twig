@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\twig;
+namespace Yiisoft\Yii\Twig;
 
 /**
  * Class-proxy for static classes
