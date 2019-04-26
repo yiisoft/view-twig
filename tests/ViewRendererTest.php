@@ -14,7 +14,7 @@ use Yiisoft\Yii\Twig\Tests\Data\Order;
 use Yiisoft\Yii\Twig\Tests\Data\Singer;
 use yii\view\Theme;
 use yii\web\UrlManager;
-use yii\jquery\JqueryAsset;
+use Yiisoft\Yii\JQuery\JqueryAsset;
 
 /**
  * Tests Twig view renderer
