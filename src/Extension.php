@@ -92,7 +92,7 @@ class Extension extends \Twig_Extension
      * Function for registering an asset
      *
      * ```
-     * {{ use('yii/jquery/JqueryAsset') }}
+     * {{ use('Yiisoft/Yii/JQuery/JqueryAsset') }}
      * {{ register_jquery_asset() }}
      * ```
      *
@@ -111,7 +111,7 @@ class Extension extends \Twig_Extension
      * Function for additional syntax of registering asset bundles
      *
      * ```
-     * {{ register_asset_bundle('yii/jquery/JqueryAsset') }}
+     * {{ register_asset_bundle('Yiisoft/Yii/JQuery/JqueryAsset') }}
      * ```
      *
      * @param array $context context information
