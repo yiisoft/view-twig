@@ -16,7 +16,7 @@ return [
         ],
     ],
     'cache' => [
-        '__class' => \yii\cache\FileCache::class,
+        '__class' => \Yiisoft\Cache\FileCache::class,
     ],
     'assetManager' => [
         '__class'   => yii\web\AssetManager::class,
