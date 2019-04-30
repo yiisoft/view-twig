@@ -75,7 +75,7 @@ class SiteController extends Controller
 {{ grid_view_widget({
     'dataProvider': dataProvider,
     'columns': [
-        {'__class': '\\yii\\dataview\\columns\\SerialColumn'},
+        {'__class': '\\Yiisoft\\Yii\\DataView\\Columns\\SerialColumn'},
         'id',
         'name',
         {

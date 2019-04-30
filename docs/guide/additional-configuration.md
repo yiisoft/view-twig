@@ -13,7 +13,7 @@ helpers and your own variables there:
 'globals' => [
     'html' => ['class' => \yii\helpers\Html::class],
     'name' => 'Carsten',
-    'GridView' => ['class' => \yii\dataview\GridView::class],
+    'GridView' => ['class' => \Yiisoft\Yii\DataView\GridView::class],
 ],
 ```
 
