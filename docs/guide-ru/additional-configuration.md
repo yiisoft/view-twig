@@ -12,7 +12,7 @@
 ```php
 'globals' => [
     'name' => 'Carsten',
-    'GridView' => ['class' => '\yii\dataview\GridView'],
+    'GridView' => ['class' => '\Yiisoft\Yii\DataView\GridView'],
 ],
 ```
 

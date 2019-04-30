@@ -13,7 +13,7 @@ Yii のヘルパとあなた自身の変数を定義することが出来ます�
 'globals' => [
     'html' => ['class' => '\yii\helpers\Html'],
     'name' => 'Carsten',
-    'GridView' => ['class' => '\yii\dataview\GridView'],
+    'GridView' => ['class' => '\Yiisoft\Yii\DataView\GridView'],
 ],
 ```
 
