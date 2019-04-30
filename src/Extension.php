@@ -8,7 +8,7 @@
 namespace Yiisoft\Yii\Twig;
 
 use yii\base\InvalidCallException;
-use Yiisoft\Helpers\InflectorHelper;
+use Yiisoft\Inflector\InflectorHelper;
 use Yiisoft\Strings\StringHelper;
 use yii\helpers\Url;
 use yii\web\AssetBundle;
