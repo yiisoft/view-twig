@@ -8,7 +8,7 @@
 namespace Yiisoft\Yii\Twig;
 
 use yii\base\InvalidCallException;
-use Yiisoft\Inflector\InflectorHelper;
+use Yiisoft\Strings\Inflector;
 use Yiisoft\Strings\StringHelper;
 use yii\helpers\Url;
 use yii\web\AssetBundle;
@@ -191,7 +191,7 @@ class Extension extends \Twig_Extension
     public function viewHelper($context, $name = null)
     {
         if ($name !== null && isset($context['this'])) {
-            $this->call($context['this'], InflectorHelper::variablize($name));
+            $this->call($context['this'], Inflector::variablize($name));
         }
     }
 
@@ -234,7 +234,7 @@ class Extension extends \Twig_Extension
      */
     public function resolveClassName($className)
     {
-        $className = InflectorHelper::id2camel($className, '_');
+        $className = Inflector::id2camel($className, '_');
         if (isset($this->aliases[$className])) {
             return $this->aliases[$className];
         }

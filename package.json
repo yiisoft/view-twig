@@ -6,13 +6,18 @@
     "doc": "docs"
   },
   "dependencies": {
+    "@composer-asset/yiisoft--yii-jquery": "file:./vendor/foxy/composer-asset/yiisoft/yii-jquery",
     "jquery": "^3.3.1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yiisoft/yii-twig.git"
   },
-  "keywords": ["php", "yii", "twig"],
+  "keywords": [
+    "php",
+    "yii",
+    "twig"
+  ],
   "author": "",
   "license": "BSD-3-Clause",
   "bugs": {

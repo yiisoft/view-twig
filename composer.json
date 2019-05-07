@@ -24,7 +24,6 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "yiisoft/inflector": "^3.0@dev",
         "yiisoft/strings": "^3.0@dev",
         "yiisoft/yii-core": "^3.0@dev",
         "yiisoft/yii-web": "^3.0@dev",
