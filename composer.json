@@ -31,7 +31,7 @@
         "twig/twig": "~2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.3",
+        "phpunit/phpunit": "^7.3 || ^9.0",
         "hiqdev/composer-config-plugin": "^1.0@dev",
         "foxy/foxy": "^1.0",
         "yiisoft/di": "^3.0@dev",
