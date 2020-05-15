@@ -16,7 +16,8 @@ Documentation is at [docs/guide/README.md](docs/guide/README.md).
 [![Latest Stable Version](https://poser.pugx.org/yiisoft/yii-twig/v/stable.png)](https://packagist.org/packages/yiisoft/yii-twig)
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii-twig/downloads.png)](https://packagist.org/packages/yiisoft/yii-twig)
 [![Build Status](https://travis-ci.org/yiisoft/yii-twig.svg?branch=master)](https://travis-ci.org/yiisoft/yii-twig)
-
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yiisoft/yii-twig/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yiisoft/yii-twig/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/yiisoft/yii-twig/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/yiisoft/yii-twig/?branch=master)
 
 Installation
 ------------
