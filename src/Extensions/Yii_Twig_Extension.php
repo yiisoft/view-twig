@@ -4,6 +4,7 @@ namespace Yiisoft\Yii\Twig\Extensions;
 
 use Psr\Container\ContainerInterface;
 use Twig\Extension\GlobalsInterface;
+use Twig\TwigFunction;
 
 /**
  * Class Yii_Twig_Extension
@@ -19,7 +20,7 @@ class Yii_Twig_Extension extends \Twig\Extension\AbstractExtension implements Gl
     }
 
     /**
-     * @return array|\Twig\TwigFunction[]
+     * @return array|TwigFunction[]
      */
     public function getFunctions()
     {
@@ -28,12 +29,9 @@ class Yii_Twig_Extension extends \Twig\Extension\AbstractExtension implements Gl
         ];
 
         return [
-            new \Twig\TwigFunction('get', function ($id) {
+            new TwigFunction('get', function ($id) {
                 return $this->container->get($id);
-            }, $options),
-            new \Twig\TwigFunction('set', function (...$args) {
-                return $this->container->set(...$args);
-            }, $options),
+            }, $options)
         ];
     }
 
