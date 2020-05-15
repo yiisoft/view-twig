@@ -20,9 +20,10 @@ class ViewRenderer implements TemplateRendererInterface
 
     public function render(View $view, string $template, array $params): string
     {
-        $renderer = function () use ($view, $template, $params) {
+        $environment = $this->environment;
+        $renderer = function () use ($view, $template, $params, $environment) {
             $file = str_replace($view->getBasePath(), null, $template);
-            echo $this->environment->render($file, array_merge([
+            echo $environment->render($file, array_merge([
                 'this' => $view
             ], $params));
         };

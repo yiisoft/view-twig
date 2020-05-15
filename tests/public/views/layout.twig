@@ -1,0 +1,22 @@
+{{ this.beginPage()|raw }}
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yii Demo (Twig)</title>
+    {{ this.head()|raw }}
+</head>
+<body>
+{{ this.beginBody()|raw }}
+{{ get("Yiisoft\\Yii\\Twig\\Tests\\Html").helloWorld() }}
+<main role="main" class="container py-4">
+    {{ content|raw }}
+</main>
+{{ this.endBody()|raw }}
+</body>
+</html>
+
+{{ this.endPage(true)|raw }}
+
