@@ -48,5 +48,4 @@ final class WebViewTest extends TestCase
         $this->assertStringNotContainsString('helloWorld', $result);
         $this->assertStringNotContainsString('{{ name }}', $result);
     }
-
 }
