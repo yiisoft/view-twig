@@ -6,9 +6,8 @@ namespace Yiisoft\Yii\Twig\Tests;
 
 use Yiisoft\Files\FileHelper;
 
-final class WebViewTest extends \Yiisoft\Yii\Twig\Tests\TestCase
+final class WebViewTest extends TestCase
 {
-    private string $dataDir;
     private string $layoutPath;
 
     /**
@@ -20,8 +19,8 @@ final class WebViewTest extends \Yiisoft\Yii\Twig\Tests\TestCase
     {
         parent::setUp();
 
-        $this->dataDir = dirname(__DIR__) . '/tests/public/views';
-        $this->layoutPath = $this->dataDir . '/layout.twig';
+        $dataDir = dirname(__DIR__) . '/tests/public/views';
+        $this->layoutPath = $dataDir . '/layout.twig';
         $this->testViewPath = sys_get_temp_dir() . '/' . str_replace('\\', '_', get_class($this)) . uniqid('', false);
 
         FileHelper::createDirectory($this->testViewPath);
@@ -33,21 +32,21 @@ final class WebViewTest extends \Yiisoft\Yii\Twig\Tests\TestCase
         FileHelper::removeDirectory($this->testViewPath);
     }
 
-    public function testLayout()
+    public function testLayout(): void
     {
-        $content = $this->webView->render('//index.twig',['name' => 'Javharbek Abdulatipov']);
+        $content = $this->webView->render('//index.twig', ['name' => 'Javharbek Abdulatipov']);
 
         $result = $this->webView->renderFile(
             $this->layoutPath,
             [
-               'content' => $content
+                'content' => $content
             ]
         );
 
-        $this->assertStringContainsString('Javharbek Abdulatipov',$result);
-        $this->assertStringContainsString('Hello World',$result);
-        $this->assertStringNotContainsString('helloWorld',$result);
-        $this->assertStringNotContainsString('{{ name }}',$result);
+        $this->assertStringContainsString('Javharbek Abdulatipov', $result);
+        $this->assertStringContainsString('Hello World', $result);
+        $this->assertStringNotContainsString('helloWorld', $result);
+        $this->assertStringNotContainsString('{{ name }}', $result);
     }
 
 }
