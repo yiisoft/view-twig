@@ -19,8 +19,7 @@ Documentation is at [docs/guide/README.md](docs/guide/README.md).
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yiisoft/yii-twig/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yiisoft/yii-twig/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/yiisoft/yii-twig/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/yiisoft/yii-twig/?branch=master)
 
-Installation
-------------
+## Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
@@ -28,9 +27,10 @@ The preferred way to install this extension is through [composer](http://getcomp
 php composer.phar require --prefer-dist yiisoft/yii-twig
 ```
 
-Usage
------
+## Usage
+
 You should specify `twig` and `view` in the configuration:
+
 ```php
 //Twig    
 return [
@@ -71,19 +71,23 @@ return [
         return $webView;
     },
     //...
-]
+];
 ``` 
 
-Template
--------
+## Template
+
 All variables that were in the regular template are also available in the twig template.
+
 * `get(string id)` this is a function of accessing the container, in addition, there is a global variable throughout the templates `container`
-```
+
+```twig
 {{ get('App\\Widget\\PerformanceMetrics').widget()|raw }}
 ```
-Example
------
+
+## Example
+
 main.twig
+
 ```twig
 {{ assetManager.register(['App\\Asset\\AppAsset']) }}
 {{ this.setCssFiles(assetManager.getCssFiles()) }}
