@@ -2,7 +2,6 @@
 
 namespace Yiisoft\Yii\Twig;
 
-use Psr\Container\ContainerInterface;
 use Twig\Environment;
 use Yiisoft\View\TemplateRendererInterface;
 use Yiisoft\View\View;
@@ -12,19 +11,18 @@ use Yiisoft\View\View;
  */
 class ViewRenderer implements TemplateRendererInterface
 {
-    public ContainerInterface $container;
+    private Environment $environment;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(Environment $environment)
     {
-        $this->container = $container;
+        $this->environment = $environment;
     }
 
     public function render(View $view, string $template, array $params): string
     {
-        $container = $this->container;
-        $renderer = function () use ($view, $template, $params,$container) {
+        $renderer = function () use ($view, $template, $params) {
             $file = str_replace($view->getBasePath(), null, $template);
-            echo $container->get(Environment::class)->render($file, array_merge([
+            echo $this->environment->render($file, array_merge([
                 'this' => $view
             ], $params));
         };
