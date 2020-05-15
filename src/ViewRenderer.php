@@ -1,50 +1,24 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
 
 namespace Yiisoft\Yii\Twig;
 
 use Psr\Container\ContainerInterface;
 use Twig\Environment;
-use Yiisoft\Assets\AssetManager;
-use Yiisoft\Router\FastRoute\UrlGenerator;
 use Yiisoft\View\TemplateRendererInterface;
 use Yiisoft\View\View;
-use Yiisoft\Yii\Web\User\User;
 
 /**
- * Class ViewRenderer
- * @package Yiisoft\Yii\Twig
- *
- * @author Javharbek Abdulatipov <jakharbek@gmail.com>
+ * ViewRenderer allows using Twig with a View service
  */
 class ViewRenderer implements TemplateRendererInterface
 {
-    /**
-     * @var ContainerInterface
-     */
-    public $container;
+    public ContainerInterface $container;
 
-    /**
-     * ViewRenderer constructor.
-     * @param ContainerInterface $container
-     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
 
-
-    /**
-     * @param View $view
-     * @param string $template
-     * @param array $params
-     * @return string
-     * @throws \Throwable
-     */
     public function render(View $view, string $template, array $params): string
     {
         $container = $this->container;

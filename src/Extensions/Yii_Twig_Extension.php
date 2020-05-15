@@ -1,9 +1,4 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
 
 namespace Yiisoft\Yii\Twig\Extensions;
 
@@ -16,15 +11,8 @@ use Twig\Extension\GlobalsInterface;
  */
 class Yii_Twig_Extension extends \Twig\Extension\AbstractExtension implements GlobalsInterface
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
+    private ContainerInterface $container;
 
-    /**
-     * Yii_Twig_Extension constructor.
-     * @param ContainerInterface $container
-     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
@@ -49,9 +37,6 @@ class Yii_Twig_Extension extends \Twig\Extension\AbstractExtension implements Gl
         ];
     }
 
-    /**
-     * @return array|ContainerInterface[]
-     */
     public function getGlobals(): array
     {
         return [
