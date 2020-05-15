@@ -15,21 +15,11 @@
         "irc": "irc://irc.freenode.net/yii",
         "source": "https://github.com/yiisoft/yii-twig"
     },
-    "authors": [
-        {
-            "name": "Alexander Makarov",
-            "email": "sam@rmcreative.ru"
-        },
-        {
-            "name": "Javharbek Abdulatipov",
-            "email": "jakharbek@gmail.com"
-        }
-    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "php": "^7.4",
         "yiisoft/strings": "^3.0@dev",
-        "yiisoft/yii-core": "^3.0@dev",
         "yiisoft/yii-web": "^3.0@dev",
         "yiisoft/view": "^3.0@dev",
         "twig/twig": "^3.0"
@@ -41,12 +31,6 @@
         "yiisoft/log": "^3.0@dev",
         "yiisoft/cache": "^3.0@dev"
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://asset-packagist.org"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Yiisoft\\Yii\\Twig\\": "src/"
