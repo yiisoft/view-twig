@@ -1,16 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yiisoft\Yii\Twig\Extensions;
 
 use Psr\Container\ContainerInterface;
+use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 use Twig\TwigFunction;
 
 /**
- * Class Yii_Twig_Extension
+ * Class YiiTwigExtension
  * @package Yiisoft\Yii\Twig\Extensions
  */
-class Yii_Twig_Extension extends \Twig\Extension\AbstractExtension implements GlobalsInterface
+class YiiTwigExtension extends AbstractExtension implements GlobalsInterface
 {
     private ContainerInterface $container;
 
@@ -22,7 +25,7 @@ class Yii_Twig_Extension extends \Twig\Extension\AbstractExtension implements Gl
     /**
      * @return array|TwigFunction[]
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         $options = [
             'is_safe',
