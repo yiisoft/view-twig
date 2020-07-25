@@ -9,9 +9,6 @@ use Yiisoft\EventDispatcher\Dispatcher\Dispatcher;
 use Yiisoft\EventDispatcher\Provider\Provider;
 use Yiisoft\Factory\Definitions\Reference;
 use Yiisoft\Log\Logger;
-use Yiisoft\View\Tests\Mocks\WebViewPlaceholderMock;
-use Yiisoft\View\Theme;
-use Yiisoft\View\View;
 use Yiisoft\View\WebView;
 
 $tempDir = sys_get_temp_dir();
@@ -37,7 +34,7 @@ return [
     EventDispatcherInterface::class => [
         '__class' => Dispatcher::class,
         '__construct()' => [
-           'listenerProvider' => Reference::to(ListenerProviderInterface::class)
+            'listenerProvider' => Reference::to(ListenerProviderInterface::class)
         ],
     ],
 
@@ -52,10 +49,15 @@ return [
     \Twig\Environment::class => static function (Psr\Container\ContainerInterface $container) {
         $loader = new \Twig\Loader\FilesystemLoader($container->get(Yiisoft\Aliases\Aliases::class)->get('@views'));
 
-        return new \Twig\Environment($loader, array_merge([
-            //'cache' =>$container->get(Yiisoft\Aliases\Aliases::class)->get('@runtime/cache/twig'),
-            'charset' => 'utf-8',
-        ], []));
+        return new \Twig\Environment(
+            $loader, array_merge(
+            [
+                //'cache' =>$container->get(Yiisoft\Aliases\Aliases::class)->get('@runtime/cache/twig'),
+                'charset' => 'utf-8',
+            ],
+            []
+        )
+        );
     },
 
     //View
@@ -75,11 +77,13 @@ return [
          */
         $twig = $container->get(\Twig\Environment::class);
 
-        $webView->setRenderers([
-            'twig' => new \Yiisoft\Yii\Twig\ViewRenderer($twig)
-        ]);
+        $webView->setRenderers(
+            [
+                'twig' => new \Yiisoft\Yii\Twig\ViewRenderer($twig)
+            ]
+        );
 
-        $twig->addExtension(new \Yiisoft\Yii\Twig\Extensions\Yii_Twig_Extension($container));
+        $twig->addExtension(new \Yiisoft\Yii\Twig\Extensions\YiiTwigExtension($container));
 
         return $webView;
     },
