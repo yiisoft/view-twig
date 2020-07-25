@@ -50,13 +50,14 @@ return [
         $loader = new \Twig\Loader\FilesystemLoader($container->get(Yiisoft\Aliases\Aliases::class)->get('@views'));
 
         return new \Twig\Environment(
-            $loader, array_merge(
-            [
-                //'cache' =>$container->get(Yiisoft\Aliases\Aliases::class)->get('@runtime/cache/twig'),
-                'charset' => 'utf-8',
-            ],
-            []
-        )
+            $loader,
+            array_merge(
+                [
+                    //'cache' =>$container->get(Yiisoft\Aliases\Aliases::class)->get('@runtime/cache/twig'),
+                    'charset' => 'utf-8',
+                ],
+                []
+            )
         );
     },
 
