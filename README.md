@@ -66,7 +66,7 @@ return [
             'twig' => new \Yiisoft\Yii\Twig\ViewRenderer($container)
         ]);
 
-        $container->get(\Twig\Environment::class)->addExtension(new \Yiisoft\Yii\Twig\Extensions\Yii_Twig_Extension($container));
+        $container->get(\Twig\Environment::class)->addExtension(new \Yiisoft\Yii\Twig\Extensions\YiiTwigExtension($container));
 
         return $webView;
     },
