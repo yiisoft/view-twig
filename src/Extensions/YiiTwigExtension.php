@@ -23,7 +23,7 @@ class YiiTwigExtension extends AbstractExtension implements GlobalsInterface
     }
 
     /**
-     * @return array|TwigFunction[]
+     * @return TwigFunction[]
      */
     public function getFunctions(): array
     {
