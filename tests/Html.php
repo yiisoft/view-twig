@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Yiisoft\Yii\Twig\Tests;
 
 class Html
