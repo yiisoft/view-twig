@@ -14,17 +14,13 @@ use Yiisoft\View\WebView;
 $tempDir = sys_get_temp_dir();
 
 return [
-    ContainerInterface::class => function (ContainerInterface $container) {
-        return $container;
-    },
-
     Yiisoft\Aliases\Aliases::class => new Aliases(
         [
             '@root' => dirname(__DIR__, 1),
             '@public' => '@root/tests/public',
             '@basePath' => '@public/assets',
             '@views' => '@public/views',
-            '@web' => '/baseUrl'
+            '@baseUrl' => '/baseUrl'
         ]
     ),
     ListenerProviderInterface::class => [
