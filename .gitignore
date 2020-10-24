@@ -29,3 +29,6 @@ phpunit.phar
 # docker
 /tests/docker
 /tests/dockerids
+
+# phpunit cache
+.phpunit.result.cache
