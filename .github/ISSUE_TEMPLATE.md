@@ -11,8 +11,6 @@
 
 | Q                | A
 | ---------------- | ---
-| Yii version      |
-| Yii Twig version |
-| Twig version     |
-| PHP version      |
+| Version          | 1.0.?
+| PHP version      | 
 | Operating system |
