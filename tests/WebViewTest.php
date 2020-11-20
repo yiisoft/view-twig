@@ -21,7 +21,7 @@ final class WebViewTest extends TestCase
 
         $dataDir = dirname(__DIR__) . '/tests/public/views';
         $this->layoutPath = $dataDir . '/layout.twig';
-        $this->testViewPath = sys_get_temp_dir() . '/' . str_replace('\\', '_', get_class($this)) . uniqid('', false);
+        $this->testViewPath = sys_get_temp_dir() . '/' . str_replace('\\', '_', self::class) . uniqid('', false);
 
         FileHelper::createDirectory($this->testViewPath);
     }
@@ -39,7 +39,7 @@ final class WebViewTest extends TestCase
         $result = $this->webView->renderFile(
             $this->layoutPath,
             [
-                'content' => $content
+                'content' => $content,
             ]
         );
 

@@ -1,6 +1,7 @@
 <?php
 
-use Psr\Container\ContainerInterface;
+declare(strict_types=1);
+
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\EventDispatcher\ListenerProviderInterface;
 use Psr\Log\LoggerInterface;
@@ -20,7 +21,7 @@ return [
             '@public' => '@root/tests/public',
             '@basePath' => '@public/assets',
             '@views' => '@public/views',
-            '@baseUrl' => '/baseUrl'
+            '@baseUrl' => '/baseUrl',
         ]
     ),
     ListenerProviderInterface::class => [
@@ -30,7 +31,7 @@ return [
     EventDispatcherInterface::class => [
         '__class' => Dispatcher::class,
         '__construct()' => [
-            'listenerProvider' => Reference::to(ListenerProviderInterface::class)
+            'listenerProvider' => Reference::to(ListenerProviderInterface::class),
         ],
     ],
 
@@ -73,7 +74,7 @@ return [
 
         $webView->setRenderers(
             [
-                'twig' => new \Yiisoft\Yii\Twig\ViewRenderer($twig)
+                'twig' => new \Yiisoft\Yii\Twig\ViewRenderer($twig),
             ]
         );
 
