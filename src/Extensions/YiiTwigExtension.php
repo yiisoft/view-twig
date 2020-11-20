@@ -11,6 +11,7 @@ use Twig\TwigFunction;
 
 /**
  * Class YiiTwigExtension
+ *
  * @package Yiisoft\Yii\Twig\Extensions
  */
 class YiiTwigExtension extends AbstractExtension implements GlobalsInterface
@@ -34,7 +35,7 @@ class YiiTwigExtension extends AbstractExtension implements GlobalsInterface
         return [
             new TwigFunction('get', function ($id) {
                 return $this->container->get($id);
-            }, $options)
+            }, $options),
         ];
     }
 
