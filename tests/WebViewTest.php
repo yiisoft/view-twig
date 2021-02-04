@@ -23,7 +23,7 @@ final class WebViewTest extends TestCase
         $this->layoutPath = $dataDir . '/layout.twig';
         $this->testViewPath = sys_get_temp_dir() . '/' . str_replace('\\', '_', self::class) . uniqid('', false);
 
-        FileHelper::createDirectory($this->testViewPath);
+        FileHelper::ensureDirectory($this->testViewPath);
     }
 
     protected function tearDown(): void
