@@ -25,18 +25,18 @@ return [
         ]
     ),
     ListenerProviderInterface::class => [
-        '__class' => Provider::class,
+        'class' => Provider::class,
     ],
 
     EventDispatcherInterface::class => [
-        '__class' => Dispatcher::class,
+        'class' => Dispatcher::class,
         '__construct()' => [
             'listenerProvider' => Reference::to(ListenerProviderInterface::class),
         ],
     ],
 
     LoggerInterface::class => [
-        '__class' => Logger::class,
+        'class' => Logger::class,
         '__construct()' => [
             'targets' => [],
         ],
