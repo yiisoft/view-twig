@@ -8,7 +8,7 @@ use Psr\Log\LoggerInterface;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\EventDispatcher\Dispatcher\Dispatcher;
 use Yiisoft\EventDispatcher\Provider\Provider;
-use Yiisoft\Factory\Definitions\Reference;
+use Yiisoft\Factory\Definition\Reference;
 use Yiisoft\Log\Logger;
 use Yiisoft\View\WebView;
 
@@ -25,18 +25,18 @@ return [
         ]
     ),
     ListenerProviderInterface::class => [
-        '__class' => Provider::class,
+        'class' => Provider::class,
     ],
 
     EventDispatcherInterface::class => [
-        '__class' => Dispatcher::class,
+        'class' => Dispatcher::class,
         '__construct()' => [
             'listenerProvider' => Reference::to(ListenerProviderInterface::class),
         ],
     ],
 
     LoggerInterface::class => [
-        '__class' => Logger::class,
+        'class' => Logger::class,
         '__construct()' => [
             'targets' => [],
         ],
