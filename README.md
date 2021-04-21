@@ -39,8 +39,8 @@ You should specify `twig` and `view` in the configuration:
 return [
     //...
     //Twig
-    \Twig\Environment::class => static function (Psr\Container\ContainerInterface $container) {
-        $loader = new \Twig\Loader\FilesystemLoader($container->get(Yiisoft\Aliases\Aliases::class)->get('@views'));
+    \Twig\Environment::class => static function (\Psr\Container\ContainerInterface $container) {
+        $loader = new \Twig\Loader\FilesystemLoader($container->get(\Yiisoft\Aliases\Aliases::class)->get('@views'));
 
         return new \Twig\Environment($loader, array_merge([
             'cache' =>$container->get(Yiisoft\Aliases\Aliases::class)->get('@runtime/cache/twig'),
@@ -48,26 +48,23 @@ return [
         ], []));
     }, 
     //View
-    WebView::class => static function (Psr\Container\ContainerInterface $container) {
-        $webView = new Yiisoft\View\WebView(
-            $container->get(Yiisoft\Aliases\Aliases::class)->get('@views'),
-            $container->get(Yiisoft\View\Theme::class),
-            $container->get(Psr\EventDispatcher\EventDispatcherInterface::class),
+    WebView::class => static function (\Psr\Container\ContainerInterface $container) {
+        $webView = new \Yiisoft\View\WebView(
+            $container->get(\Yiisoft\Aliases\Aliases::class)->get('@views'),
+            $container->get(\Yiisoft\View\Theme::class),
+            $container->get(\Psr\EventDispatcher\EventDispatcherInterface::class),
             $container->get(\Psr\Log\LoggerInterface::class)
         );
 
-        $webView->setDefaultParameters(
-            [
-                'assetManager' => $container->get(Yiisoft\Assets\AssetManager::class),
-                'urlGenerator' => $container->get(Yiisoft\Router\UrlGeneratorInterface::class),
-            ]
-        );
-
-        $webView->setDefaultExtension('twig');
-
-        $webView->setRenderers([
-            'twig' => new \Yiisoft\Yii\Twig\ViewRenderer($container)
-        ]);
+        $webView = $webView
+            ->withDefaultParameters([
+                'assetManager' => $container->get(\Yiisoft\Assets\AssetManager::class),
+                'urlGenerator' => $container->get(\Yiisoft\Router\UrlGeneratorInterface::class),
+            ])
+            ->withDefaultExtension('twig')
+            ->withRenderers([
+                'twig' => new \Yiisoft\Yii\Twig\ViewRenderer($container)
+            ]);
 
         $container->get(\Twig\Environment::class)->addExtension(new \Yiisoft\Yii\Twig\Extensions\YiiTwigExtension($container));
 

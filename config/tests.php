@@ -64,19 +64,16 @@ return [
             $container->get(\Psr\Log\LoggerInterface::class)
         );
 
-
-        $webView->setDefaultExtension('twig');
-
         /**
          * @var $twig \Twig\Environment
          */
         $twig = $container->get(\Twig\Environment::class);
 
-        $webView->setRenderers(
-            [
+        $webView = $webView
+            ->withDefaultExtension('twig')
+            ->withRenderers([
                 'twig' => new \Yiisoft\Yii\Twig\ViewRenderer($twig),
-            ]
-        );
+            ]);
 
         $twig->addExtension(new \Yiisoft\Yii\Twig\Extensions\YiiTwigExtension($container));
 
