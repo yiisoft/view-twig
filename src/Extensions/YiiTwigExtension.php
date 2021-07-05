@@ -6,13 +6,12 @@ namespace Yiisoft\Yii\Twig\Extensions;
 
 use Psr\Container\ContainerInterface;
 use Twig\Extension\AbstractExtension;
-use Twig\Extension\GlobalsInterface;
 use Twig\TwigFunction;
 
 /**
  * YiiTwigExtension adds additional functionality to the Twig engine.
  */
-final class YiiTwigExtension extends AbstractExtension implements GlobalsInterface
+final class YiiTwigExtension extends AbstractExtension
 {
     private ContainerInterface $container;
 
@@ -32,13 +31,6 @@ final class YiiTwigExtension extends AbstractExtension implements GlobalsInterfa
                 /** @return mixed */
                 fn (string $id) => $this->container->get($id),
             ),
-        ];
-    }
-
-    public function getGlobals(): array
-    {
-        return [
-            'container' => $this->container,
         ];
     }
 }
