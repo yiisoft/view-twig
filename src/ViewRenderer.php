@@ -20,7 +20,7 @@ use function str_replace;
 /**
  * ViewRenderer allows using Twig with a View service.
  */
-class ViewRenderer implements TemplateRendererInterface
+final class ViewRenderer implements TemplateRendererInterface
 {
     private Environment $environment;
 

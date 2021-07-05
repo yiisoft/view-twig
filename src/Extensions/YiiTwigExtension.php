@@ -27,9 +27,11 @@ final class YiiTwigExtension extends AbstractExtension implements GlobalsInterfa
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('get', function ($id) {
-                return $this->container->get($id);
-            }),
+            new TwigFunction(
+                'get',
+                /** @return mixed */
+                fn (string $id) => $this->container->get($id),
+            ),
         ];
     }
 
