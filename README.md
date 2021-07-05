@@ -5,7 +5,7 @@
     <a href="https://twig.symfony.com/" target="_blank">
         <img src="https://twig.symfony.com/images/twig-logo.png" height="100px">
     </a>
-    <h1 align="center">Yii Framework Twig Extension</h1>
+    <h1 align="center">Yii View Twig Renderer</h1>
     <br>
 </p>
 

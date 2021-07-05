@@ -1,4 +1,4 @@
-# Yii Framework Twig Extension Change Log
+# Yii View Twig Renderer Change Log
 
 ## 1.0.0 under development
 

@@ -1,4 +1,4 @@
-# Upgrading Instructions for Yii Framework Twig Extension 
+# Upgrading Instructions for Yii View Twig Renderer
 
 This file contains the upgrade notes for Yii Framework Twig Extension. These notes highlight changes that
 could break your application when you upgrade extension from one version to another.
