@@ -5,90 +5,114 @@ declare(strict_types=1);
 namespace Yiisoft\Yii\Twig\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Psr\Log\NullLogger;
+use Twig\Environment;
+use Twig\Error\RuntimeError;
+use Twig\Loader\FilesystemLoader;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Files\FileHelper;
 use Yiisoft\Test\Support\Container\SimpleContainer;
 use Yiisoft\Test\Support\EventDispatcher\SimpleEventDispatcher;
-use Yiisoft\View\View;
+use Yiisoft\View\TemplateRendererInterface;
+use Yiisoft\View\WebView;
 use Yiisoft\Yii\Twig\Extensions\YiiTwigExtension;
+use Yiisoft\Yii\Twig\Tests\Support\BeginBody;
+use Yiisoft\Yii\Twig\Tests\Support\EndBody;
+use Yiisoft\Yii\Twig\Tests\Support\ErrorContent;
 use Yiisoft\Yii\Twig\ViewRenderer;
 
 final class ViewTest extends TestCase
 {
     private string $layoutPath;
-
-    /**
-     * @var string path for the test files.
-     */
-    private string $testViewPath = '';
+    private string $tempDirectory;
 
     protected function setUp(): void
     {
         parent::setUp();
-
-        $dataDir = dirname(__DIR__) . '/tests/public/views';
-        $this->layoutPath = $dataDir . '/layout.twig';
-        $this->testViewPath = sys_get_temp_dir() . '/' . str_replace('\\', '_', self::class) . uniqid('', false);
-
-        FileHelper::ensureDirectory($this->testViewPath);
+        $this->tempDirectory = __DIR__ . '/public/tmp/View';
+        FileHelper::ensureDirectory($this->tempDirectory);
+        $this->layoutPath = dirname(__DIR__) . '/tests/public/views/layout.twig';
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
-        FileHelper::removeDirectory($this->testViewPath);
+        FileHelper::removeDirectory($this->tempDirectory);
     }
 
-    protected function getView(): View
+    public function testLayout(): void
+    {
+        $content = $this->getView()->render('/index.twig', ['name' => 'Javharbek Abdulatipov']);
+
+        $result = $this->getView()->renderFile($this->layoutPath, ['content' => $content]);
+
+        $this->assertStringContainsString('Begin Body', $result);
+        $this->assertStringContainsString('Javharbek Abdulatipov', $result);
+        $this->assertStringNotContainsString('{{ name }}', $result);
+        $this->assertStringContainsString('End Body', $result);
+    }
+
+    public function testExtension(): void
+    {
+        $container = $this->getContainer();
+        $extension = new YiiTwigExtension($container);
+        $functionGet = $extension->getFunctions()[0];
+
+        $this->assertSame($container->get(Aliases::class), ($functionGet->getCallable())(Aliases::class));
+        $this->assertSame($container->get(BeginBody::class), ($functionGet->getCallable())(BeginBody::class));
+        $this->assertSame($container->get(EndBody::class), ($functionGet->getCallable())(EndBody::class));
+        $this->assertSame($container->get(ErrorContent::class), ($functionGet->getCallable())(ErrorContent::class));
+        $this->assertSame($container->get(Environment::class), ($functionGet->getCallable())(Environment::class));
+    }
+
+    public function testExceptionDuringRendering(): void
+    {
+        $container = $this->getContainer();
+        $view = $this->getView($container);
+        $renderer = $container->get(TemplateRendererInterface::class);
+
+        $obInitialLevel = ob_get_level();
+
+        try {
+            $renderer->render($view, __DIR__ . '/public/views/error.twig', []);
+        } catch (RuntimeError $e) {
+        }
+
+        $this->assertSame(ob_get_level(), $obInitialLevel);
+    }
+
+    private function getContainer(): SimpleContainer
     {
         $aliases = new Aliases([
-            '@root' => dirname(__DIR__, 1),
+            '@root' => dirname(__DIR__),
             '@public' => '@root/tests/public',
             '@basePath' => '@public/assets',
             '@views' => '@public/views',
             '@baseUrl' => '/baseUrl',
         ]);
 
-        $loader = new \Twig\Loader\FilesystemLoader($aliases->get('@views'));
-        $twig = new \Twig\Environment(
-            $loader,
-            [
-                'charset' => 'utf-8',
-            ]
-        );
+        $twig = new Environment(new FilesystemLoader($aliases->get('@views')), ['charset' => 'utf-8']);
 
-        $webView = (new View(
-            $aliases->get('@views'),
-            new SimpleEventDispatcher(),
-            new NullLogger()
-        ))
-        ->withDefaultExtension('twig')
-        ->withRenderers([
-            'twig' => new ViewRenderer($twig),
+        $container = new SimpleContainer([
+            Aliases::class => $aliases,
+            BeginBody::class => new BeginBody(),
+            EndBody::class => new EndBody(),
+            ErrorContent::class => new ErrorContent(),
+            Environment::class => $twig,
+            TemplateRendererInterface::class => new ViewRenderer($twig),
         ]);
 
-        $twig->addExtension(new YiiTwigExtension(new SimpleContainer([
-            Html::class => new Html(),
-        ])));
+        $twig->addExtension(new YiiTwigExtension($container));
 
-        return $webView;
+        return $container;
     }
 
-    public function testLayout(): void
+    private function getView(SimpleContainer $container = null): WebView
     {
-        $content = $this->getView()->render('//index.twig', ['name' => 'Javharbek Abdulatipov']);
+        $container ??= $this->getContainer();
 
-        $result = $this->getView()->renderFile(
-            $this->layoutPath,
-            [
-                'content' => $content,
-            ]
-        );
-
-        $this->assertStringContainsString('Javharbek Abdulatipov', $result);
-        $this->assertStringContainsString('Hello World', $result);
-        $this->assertStringNotContainsString('helloWorld', $result);
-        $this->assertStringNotContainsString('{{ name }}', $result);
+        return (new WebView($container->get(Aliases::class)->get('@views'), new SimpleEventDispatcher()))
+            ->withRenderers(['twig' => new ViewRenderer($container->get(Environment::class))])
+            ->withDefaultExtension('twig')
+        ;
     }
 }
