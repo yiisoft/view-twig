@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yiisoft\Yii\Twig;
+namespace Yiisoft\View\Twig;
 
 use Throwable;
 use Twig\Environment;

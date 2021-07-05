@@ -41,8 +41,8 @@ use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\View\WebView;
-use Yiisoft\Yii\Twig\Extensions\YiiTwigExtension;
-use Yiisoft\Yii\Twig\ViewRenderer;
+use Yiisoft\View\Twig\Extensions\YiiTwigExtension;
+use Yiisoft\View\Twig\ViewRenderer;
    
 return [
     //...

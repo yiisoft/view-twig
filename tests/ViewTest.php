@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yiisoft\Yii\Twig\Tests;
+namespace Yiisoft\View\Twig\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Twig\Environment;
@@ -14,11 +14,11 @@ use Yiisoft\Test\Support\Container\SimpleContainer;
 use Yiisoft\Test\Support\EventDispatcher\SimpleEventDispatcher;
 use Yiisoft\View\TemplateRendererInterface;
 use Yiisoft\View\WebView;
-use Yiisoft\Yii\Twig\Extensions\YiiTwigExtension;
-use Yiisoft\Yii\Twig\Tests\Support\BeginBody;
-use Yiisoft\Yii\Twig\Tests\Support\EndBody;
-use Yiisoft\Yii\Twig\Tests\Support\ErrorContent;
-use Yiisoft\Yii\Twig\ViewRenderer;
+use Yiisoft\View\Twig\Extensions\YiiTwigExtension;
+use Yiisoft\View\Twig\Tests\Support\BeginBody;
+use Yiisoft\View\Twig\Tests\Support\EndBody;
+use Yiisoft\View\Twig\Tests\Support\ErrorContent;
+use Yiisoft\View\Twig\ViewRenderer;
 
 final class ViewTest extends TestCase
 {

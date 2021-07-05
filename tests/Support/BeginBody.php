@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yiisoft\Yii\Twig\Tests\Support;
+namespace Yiisoft\View\Twig\Tests\Support;
 
 final class BeginBody
 {

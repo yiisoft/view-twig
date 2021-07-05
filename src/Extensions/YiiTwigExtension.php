@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yiisoft\Yii\Twig\Extensions;
+namespace Yiisoft\View\Twig\Extensions;
 
 use Psr\Container\ContainerInterface;
 use Twig\Extension\AbstractExtension;

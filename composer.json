@@ -1,5 +1,5 @@
 {
-    "name": "yiisoft/yii-twig",
+    "name": "yiisoft/view-twig",
     "description": "Yii Framework Twig Extension",
     "keywords": [
         "yii",
@@ -9,11 +9,11 @@
     "type": "library",
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/yiisoft/yii-twig/issues",
+        "issues": "https://github.com/yiisoft/view-twig/issues",
         "forum": "https://www.yiiframework.com/forum/",
         "wiki": "https://www.yiiframework.com/wiki/",
         "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii-twig"
+        "source": "https://github.com/yiisoft/view-twig"
     },
     "require": {
         "php": "^7.4|^8.0",
@@ -32,12 +32,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Yiisoft\\Yii\\Twig\\": "src/"
+            "Yiisoft\\View\\Twig\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Yiisoft\\Yii\\Twig\\Tests\\": "tests/"
+            "Yiisoft\\View\\Twig\\Tests\\": "tests/"
         }
     },
     "extra": {

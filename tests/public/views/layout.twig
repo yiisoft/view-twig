@@ -10,11 +10,11 @@
 </head>
 <body>
 {{ this.beginBody()|raw }}
-{{ get("Yiisoft\\Yii\\Twig\\Tests\\Support\\BeginBody").content() }}
+{{ get("Yiisoft\\View\\Twig\\Tests\\Support\\BeginBody").content() }}
 <main role="main" class="container py-4">
     {{ content|raw }}
 </main>
-{{ get("Yiisoft\\Yii\\Twig\\Tests\\Support\\EndBody").content() }}
+{{ get("Yiisoft\\View\\Twig\\Tests\\Support\\EndBody").content() }}
 {{ this.endBody()|raw }}
 </body>
 </html>
