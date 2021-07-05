@@ -10,11 +10,9 @@ use Twig\Extension\GlobalsInterface;
 use Twig\TwigFunction;
 
 /**
- * Class YiiTwigExtension
- *
- * @package Yiisoft\Yii\Twig\Extensions
+ * YiiTwigExtension adds additional functionality to the Twig engine.
  */
-class YiiTwigExtension extends AbstractExtension implements GlobalsInterface
+final class YiiTwigExtension extends AbstractExtension implements GlobalsInterface
 {
     private ContainerInterface $container;
 
@@ -28,14 +26,10 @@ class YiiTwigExtension extends AbstractExtension implements GlobalsInterface
      */
     public function getFunctions(): array
     {
-        $options = [
-            'is_safe',
-        ];
-
         return [
             new TwigFunction('get', function ($id) {
                 return $this->container->get($id);
-            }, $options),
+            }),
         ];
     }
 

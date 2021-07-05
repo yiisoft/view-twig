@@ -4,12 +4,21 @@ declare(strict_types=1);
 
 namespace Yiisoft\Yii\Twig;
 
+use Throwable;
 use Twig\Environment;
+use Yiisoft\View\BaseView;
 use Yiisoft\View\TemplateRendererInterface;
-use Yiisoft\View\View;
+
+use function array_merge;
+use function ob_end_clean;
+use function ob_get_clean;
+use function ob_get_level;
+use function ob_implicit_flush;
+use function ob_start;
+use function str_replace;
 
 /**
- * ViewRenderer allows using Twig with a View service
+ * ViewRenderer allows using Twig with a View service.
  */
 class ViewRenderer implements TemplateRendererInterface
 {
@@ -20,27 +29,26 @@ class ViewRenderer implements TemplateRendererInterface
         $this->environment = $environment;
     }
 
-    public function render(View $view, string $template, array $params): string
+    public function render(BaseView $view, string $template, array $params): string
     {
         $environment = $this->environment;
-        $renderer = function () use ($view, $template, $params, $environment) {
+        $renderer = function () use ($view, $template, $params, $environment): void {
             $file = str_replace($view->getBasePath(), '', $template);
-            echo $environment->render($file, array_merge([
-                'this' => $view,
-            ], $params));
+            echo $environment->render($file, array_merge($params, ['this' => $view]));
         };
 
         $obInitialLevel = ob_get_level();
         ob_start();
+        /** @psalm-suppress PossiblyFalseArgument */
         PHP_VERSION_ID >= 80000 ? ob_implicit_flush(false) : ob_implicit_flush(0);
+
         try {
+            /** @psalm-suppress PossiblyInvalidFunctionCall */
             $renderer->bindTo($view)($template, $params);
             return ob_get_clean();
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             while (ob_get_level() > $obInitialLevel) {
-                if (!@ob_end_clean()) {
-                    ob_clean();
-                }
+                ob_end_clean();
             }
             throw $e;
         }
