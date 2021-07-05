@@ -33,7 +33,10 @@ final class ViewRenderer implements TemplateRendererInterface
     {
         $environment = $this->environment;
         $renderer = function () use ($view, $template, $params, $environment): void {
-            $file = str_replace($view->getBasePath(), '', $template);
+            $template = str_replace('\\', '/', $template);
+            $basePath = str_replace('\\', '/', $view->getBasePath());
+            $file = str_replace($basePath, '', $template);
+
             echo $environment->render($file, array_merge($params, ['this' => $view]));
         };
 
