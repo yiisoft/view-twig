@@ -31,45 +31,62 @@ composer require yiisoft/view-twig --prefer-dist
 
 ## General usage
 
-You should specify `twig` and `view` in the configuration:
+In your application, you should specify the configuration for `Twig`
+(by default, this is `config/packages/yiisoft/view-twig/common.php`):
+
+```php
+use Psr\Container\ContainerInterface;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+use Yiisoft\Aliases\Aliases;
+use Yiisoft\View\Twig\Extensions\YiiTwigExtension;
+   
+return [
+    Environment::class => static function (ContainerInterface $container): Environment {
+        $loader = new FilesystemLoader($container->get(Aliases::class)->get('@views'));
+
+        $twig = new Environment($loader, [
+            'cache' => $container->get(Aliases::class)->get('@runtime/cache/twig'),
+            'charset' => 'utf-8',
+        ]);
+
+        $twig->addExtension(new YiiTwigExtension($container));
+        return $twig;
+    },
+];
+```
+
+And also override the configuration for `WebView` (by default, this is `config/packages/yiisoft/view/web.php`):
 
 ```php
 use Psr\Container\ContainerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\View\WebView;
-use Yiisoft\View\Twig\Extensions\YiiTwigExtension;
 use Yiisoft\View\Twig\ViewRenderer;
+
+/** @var array $params */
    
 return [
     //...
-    // Twig
-    Environment::class => static function (ContainerInterface $container): Environment {
-        $loader = new FilesystemLoader($container->get(Aliases::class)->get('@views'));
-
-        $twig = new Environment($loader, array_merge([
-            'cache' => $container->get(Aliases::class)->get('@runtime/cache/twig'),
-            'charset' => 'utf-8',
-        ], []));
-        
-        $twig->addExtension(new YiiTwigExtension($container));
-        return $twig
-    }, 
-    // WebView
-    WebView::class => static function (ContainerInterface $container): WebView {
-        return (new WebView(
+    WebView::class => static function (ContainerInterface $container) use ($params): WebView {
+        $webView = new WebView(
             $container->get(Aliases::class)->get('@views'),
             $container->get(EventDispatcherInterface::class),
-        ))
+        );
+
+        $webView = $webView
             ->withDefaultExtension('twig')
             ->withRenderers(['twig' => new ViewRenderer($container->get(Environment::class))])
         ;
+
+        $webView->setCommonParameters($params['yiisoft/view']['commonParameters']);
+        return $webView;
     },
     //...
 ];
-``` 
+```
 
 ### Template
 
@@ -82,71 +99,109 @@ this function is available in all view templates and layouts:
 {{ get('App\\Widget\\PerformanceMetrics').widget()|raw }}
 ```
 
-An example layout may look like this:
+The default main layout of the [application template](https://github.com/yiisoft/app) will look like this:
 
 ```twig
-{{ assetManager.register(['App\\Asset\\AppAsset']) }}
-{{ this.setCssFiles(assetManager.getCssFiles()) }}
-{{ this.setJsFiles(assetManager.getJsFiles()) }}
+{{ assetManager.register(['App\\Asset\\AppAsset', 'App\\Asset\\CdnFontAwesomeAsset']) }}
+{{ this.addCssFiles(assetManager.getCssFiles()) }}
+{{ this.addCssStrings(assetManager.getCssStrings()) }}
+{{ this.addJsFiles(assetManager.getJsFiles()) }}
+{{ this.addJsStrings(assetManager.getJsStrings()) }}
+{{ this.addJsVars(assetManager.getJsVars()) }}
 {{ this.beginPage()|raw }}
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Yii Demo (Twig)</title>
+        {% if this.getTitle() != null %}<title>{{ this.getTitle() }}</title>{% endif %}
         {{ this.head()|raw }}
     </head>
     <body>
     {{ this.beginBody()|raw }}
-        {{
-        get('Yiisoft\\Yii\\Bootstrap5\\NavBar').begin()
-            .brandLabel('Yii Demo')
-            .brandUrl(urlGenerator.generate('site/index'))
-            .options({'class' : 'navbar navbar-light bg-light navbar-expand-sm text-white'})
-            .start()|raw
-        }}
-        {{
-        get('Yiisoft\\Yii\\Bootstrap5\\Nav').widget()
-            .currentPath(currentUrl)
-            .options({'class' : 'navbar-nav mr-auto'})
-            .items(
-                [
-                    {'label' : 'Blog', 'url' : urlGenerator.generate('blog/index')},
-                    {'label' : 'Comments Feed', 'url' : urlGenerator.generate('blog/comment/index')},
-                    {'label' : 'Users', 'url' : urlGenerator.generate('user/index')},
-                    {'label' : 'Contact', 'url' : urlGenerator.generate('site/contact')},
-                ]
-            )|raw
-        }}
-
-        {{
-        get('Yiisoft\\Yii\\Bootstrap5\\Nav').widget()
-            .currentPath(currentUrl)
-            .options({'class' : 'navbar-nav'})
-            .items(user.getId() == null ?
-                [
-                    {'label' : 'Login', 'url' : urlGenerator.generate('site/login')},
-                    {'label' : 'Signup', 'url' : urlGenerator.generate('site/signup')},
-                ]
-                :
-                [
-                    {'label' : "Logout (" ~ user.getLogin() ~ ")", 'url' : urlGenerator.generate('site/logout')},
-                ]
-            )|raw
-        }}
-        {{ get('Yiisoft\\Yii\\Bootstrap5\\NavBar').end()|raw }}
-        <main role="main" class="container py-4">
-            {{ content|raw }}
-        </main>
-        <footer class="container py-4">
-            {{ get('App\\Widget\\PerformanceMetrics').widget()|raw }}
-        </footer>
+        <section class="hero is-fullheight is-light">
+            <div class="hero-head has-background-black">
+                {{ get('Yiisoft\\Yii\\Bulma\\NavBar').widget()
+                    .brandLabel(applicationParameters.getName())
+                    .brandImage('/images/yii-logo.jpg')
+                    .options({'class': 'is-black', 'data-sticky': '', 'data-sticky-shadow': ''})
+                    .itemsOptions({'class': 'navbar-end'})
+                    .begin()|raw
+                }}
+                {{ get('Yiisoft\\Yii\\Bulma\\Nav').widget()
+                    .currentPath(urlMatcher.getCurrentUri() != null ? urlMatcher.getCurrentUri().getPath() : '')
+                    .items([])|raw
+                }}
+                {{ get('Yiisoft\\Yii\\Bulma\\NavBar').end()|raw }}
+            </div>
+            <div class="hero-body is-light">
+                <div class="container has-text-centered">
+                    {{ content|raw }}
+                </div>
+            </div>
+            <div class="hero-footer has-background-black">
+                <div class="columns is-mobile">
+                    <div class="column has-text-left has-text-light">
+                        <i class="fas fa-copyright fa-inverse is-hidden-mobile"></i>
+                        <a class="is-hidden-mobile" href="https://www.yiiframework.com/" target="_blank" rel="noopener">
+                            {{ 'now'|date('Y') }} {{ applicationParameters.getName() }}
+                        </a>
+                        <a class="is-hidden-desktop is-size-6" href="https://www.yiiframework.com/" target="_blank" rel="noopener">
+                            {{ applicationParameters.getName() }}
+                        </a>
+                    </div>
+                    <div class="column has-text-centered has-text-light is-hidden-mobile"></div>
+                    <div class="column has-text-right has-text-light">
+                        <span class="icon">
+                            <a href="https://github.com/yiisoft" target="_blank" rel="noopener">
+                                <i class="fab fa-github fa-inverse" aria-hidden="true"></i>
+                            </a>
+                        </span>
+                        <span class="icon">
+                            <a href="https://join.slack.com/t/yii/shared_invite/enQtMzQ4MDExMDcyNTk2LTc0NDQ2ZTZhNjkzZDgwYjE4YjZlNGQxZjFmZDBjZTU3NjViMDE4ZTMxNDRkZjVlNmM1ZTA1ODVmZGUwY2U3NDA" target="_blank" rel="noopener">
+                                <i class="fab fa-slack fa-inverse " aria-hidden="true"></i>
+                            </a>
+                        </span>
+                        <span class="icon">
+                            <a href="https://www.facebook.com/groups/yiitalk" target="_blank" rel="noopener">
+                                <i class="fab fa-facebook-f fa-inverse" aria-hidden="true"></i>
+                            </a>
+                        </span>
+                        <span class="icon">
+                            <a href="https://twitter.com/yiiframework" target="_blank" rel="noopener">
+                                <i class="fab fa-twitter fa-inverse" aria-hidden="true"></i>
+                            </a>
+                        </span>
+                        <span class="icon">
+                            <a href="https://t.me/yii3ru" target="_blank" rel="noopener">
+                                <i class="fab fa-telegram-plane fa-inverse"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
     {{ this.endBody()|raw }}
     </body>
 </html>
 {{ this.endPage(true)|raw }}
+```
+
+And the view template of the main page (`site/index`) will be as follows:
+
+```twig
+{{ this.setTitle(applicationParameters.getName()) }}
+
+<h1 class="title">Hello!</h1>
+
+<p class="subtitle">Let's start something great with <strong>Yii3</strong>!</p>
+
+<p class="subtitle is-italic">
+    <a href="https://github.com/yiisoft/docs/tree/master/guide/en" target="_blank" rel="noopener">
+        Don't forget to check the guide.
+    </a>
+</p>
 ```
 
 ## Testing
