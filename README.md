@@ -115,7 +115,7 @@ The default main layout of the [application template](https://github.com/yiisoft
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% if this.getTitle() != null %}<title>{{ this.getTitle() }}</title>{% endif %}
+        <title>{{ this.getTitle() }}</title>
         {{ this.head()|raw }}
     </head>
     <body>
