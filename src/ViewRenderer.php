@@ -29,15 +29,15 @@ final class ViewRenderer implements TemplateRendererInterface
         $this->environment = $environment;
     }
 
-    public function render(BaseView $view, string $template, array $params): string
+    public function render(BaseView $view, string $template, array $parameters): string
     {
         $environment = $this->environment;
-        $renderer = function () use ($view, $template, $params, $environment): void {
+        $renderer = function () use ($view, $template, $parameters, $environment): void {
             $template = str_replace('\\', '/', $template);
             $basePath = str_replace('\\', '/', $view->getBasePath());
             $file = str_replace($basePath, '', $template);
 
-            echo $environment->render($file, array_merge($params, ['this' => $view]));
+            echo $environment->render($file, array_merge($parameters, ['this' => $view]));
         };
 
         $obInitialLevel = ob_get_level();
@@ -47,7 +47,7 @@ final class ViewRenderer implements TemplateRendererInterface
 
         try {
             /** @psalm-suppress PossiblyInvalidFunctionCall */
-            $renderer->bindTo($view)($template, $params);
+            $renderer->bindTo($view)($template, $parameters);
             return ob_get_clean();
         } catch (Throwable $e) {
             while (ob_get_level() > $obInitialLevel) {
