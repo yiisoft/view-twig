@@ -1,10 +1,8 @@
 # Yii View Twig Renderer Change Log
 
-
 ## 2.0.1 under development
 
-- no changes in this release.
-
+- Chg #32: Use yiisoft/view ^3.0 (rustamwin)
 
 ## 2.0.0 August 24, 2021
 
