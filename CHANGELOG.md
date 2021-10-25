@@ -1,10 +1,10 @@
 # Yii View Twig Renderer Change Log
 
-## 3.0.0 under development
+## 2.0.1 October 25, 2021
 
 - Chg #34: Adopt to changes in yiisoft/view ^4.0 (vjik)
 
-## 2.0.1 under development
+## 2.0.1 October 25, 2021
 
 - Chg #32: Use yiisoft/view ^3.0 (rustamwin)
 
