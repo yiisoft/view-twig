@@ -6,8 +6,8 @@ namespace Yiisoft\View\Twig;
 
 use Throwable;
 use Twig\Environment;
-use Yiisoft\View\BaseView;
 use Yiisoft\View\TemplateRendererInterface;
+use Yiisoft\View\ViewInterface;
 
 use function array_merge;
 use function ob_end_clean;
@@ -29,7 +29,7 @@ final class ViewRenderer implements TemplateRendererInterface
         $this->environment = $environment;
     }
 
-    public function render(BaseView $view, string $template, array $parameters): string
+    public function render(ViewInterface $view, string $template, array $parameters): string
     {
         $environment = $this->environment;
         $renderer = function () use ($view, $template, $parameters, $environment): void {
