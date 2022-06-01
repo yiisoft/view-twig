@@ -41,9 +41,13 @@ final class ViewTest extends TestCase
 
     public function testLayout(): void
     {
-        $content = $this->getView()->render('/index.twig', ['name' => 'Javharbek Abdulatipov']);
+        $content = $this
+            ->getView()
+            ->render('/index.twig', ['name' => 'Javharbek Abdulatipov']);
 
-        $result = $this->getView()->renderFile($this->layoutPath, ['content' => $content]);
+        $result = $this
+            ->getView()
+            ->renderFile($this->layoutPath, ['content' => $content]);
 
         $this->assertStringContainsString('Begin Body', $result);
         $this->assertStringContainsString('Javharbek Abdulatipov', $result);
@@ -110,9 +114,11 @@ final class ViewTest extends TestCase
     {
         $container ??= $this->getContainer();
 
-        return (new WebView($container->get(Aliases::class)->get('@views'), new SimpleEventDispatcher()))
+        return (new WebView($container
+            ->get(Aliases::class)
+            ->get('@views'), new SimpleEventDispatcher()))
             ->withRenderers(['twig' => new ViewRenderer($container->get(Environment::class))])
             ->withDefaultExtension('twig')
-        ;
+            ;
     }
 }

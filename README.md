@@ -43,10 +43,14 @@ use Yiisoft\View\Twig\Extensions\YiiTwigExtension;
    
 return [
     Environment::class => static function (ContainerInterface $container): Environment {
-        $loader = new FilesystemLoader($container->get(Aliases::class)->get('@views'));
+        $loader = new FilesystemLoader($container
+            ->get(Aliases::class)
+            ->get('@views'));
 
         $twig = new Environment($loader, [
-            'cache' => $container->get(Aliases::class)->get('@runtime/cache/twig'),
+            'cache' => $container
+                ->get(Aliases::class)
+                ->get('@runtime/cache/twig'),
             'charset' => 'utf-8',
         ]);
 
@@ -72,7 +76,9 @@ return [
     //...
     WebView::class => static function (ContainerInterface $container) use ($params): WebView {
         $webView = new WebView(
-            $container->get(Aliases::class)->get('@views'),
+            $container
+                ->get(Aliases::class)
+                ->get('@views'),
             $container->get(EventDispatcherInterface::class),
         );
 
