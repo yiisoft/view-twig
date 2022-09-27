@@ -78,7 +78,7 @@ final class ViewTest extends TestCase
 
         try {
             $renderer->render($view, __DIR__ . '/public/views/error.twig', []);
-        } catch (RuntimeError $e) {
+        } catch (RuntimeError) {
         }
 
         $this->assertSame(ob_get_level(), $obInitialLevel);
