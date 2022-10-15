@@ -2,6 +2,7 @@
 
 ## 2.0.2 under development
 
+- Enh: Add composer require checker into CI
 - Enh #41: Add `yiisoft/view` of version `^5.0` and `^6.0` support (@vjik)
 
 ## 2.0.1 October 25, 2021
