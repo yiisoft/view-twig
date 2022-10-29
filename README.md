@@ -197,7 +197,7 @@ The default main layout of the [application template](https://github.com/yiisoft
 And the view template of the main page (`site/index`) will be as follows:
 
 ```twig
-{{ this.setTitle(applicationParameters.getName()) }}
+{% set this = this.setTitle(applicationParameters.getName()) %}
 
 <h1 class="title">Hello!</h1>
 
