@@ -108,12 +108,12 @@ this function is available in all view templates and layouts:
 The default main layout of the [application template](https://github.com/yiisoft/app) will look like this:
 
 ```twig
-{{ assetManager.register(['App\\Asset\\AppAsset', 'App\\Asset\\CdnFontAwesomeAsset']) }}
-{{ this.addCssFiles(assetManager.getCssFiles()) }}
-{{ this.addCssStrings(assetManager.getCssStrings()) }}
-{{ this.addJsFiles(assetManager.getJsFiles()) }}
-{{ this.addJsStrings(assetManager.getJsStrings()) }}
-{{ this.addJsVars(assetManager.getJsVars()) }}
+{% do assetManager.register(['App\\Asset\\AppAsset', 'App\\Asset\\CdnFontAwesomeAsset']) %}
+{% do this.addCssFiles(assetManager.getCssFiles()) %}
+{% do this.addCssStrings(assetManager.getCssStrings()) %}
+{% do this.addJsFiles(assetManager.getJsFiles()) %}
+{% do this.addJsStrings(assetManager.getJsStrings()) %}
+{% do this.addJsVars(assetManager.getJsVars()) %}
 {{ this.beginPage()|raw }}
 <!DOCTYPE html>
 <html lang="en">
