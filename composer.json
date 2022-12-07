@@ -17,7 +17,7 @@
         "source": "https://github.com/yiisoft/view-twig"
     },
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
         "psr/container": "^1.0",
         "twig/twig": "^3.3",
         "yiisoft/view": "^4.0|^5.0|^6.0"

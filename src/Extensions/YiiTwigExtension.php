@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Yiisoft\View\Twig\Extensions;
 
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -25,8 +27,7 @@ final class YiiTwigExtension extends AbstractExtension
         return [
             new TwigFunction(
                 'get',
-                /** @return mixed */
-                fn (string $id) => $this->container->get($id),
+                fn (string $id): mixed => $this->container->get($id),
             ),
         ];
     }
