@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Yiisoft\View\Twig\Extensions;
 
-use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
