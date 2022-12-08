@@ -13,11 +13,8 @@ use Twig\TwigFunction;
  */
 final class YiiTwigExtension extends AbstractExtension
 {
-    private ContainerInterface $container;
-
-    public function __construct(ContainerInterface $container)
+    public function __construct(private ContainerInterface $container)
     {
-        $this->container = $container;
     }
 
     /**
@@ -28,8 +25,7 @@ final class YiiTwigExtension extends AbstractExtension
         return [
             new TwigFunction(
                 'get',
-                /** @return mixed */
-                fn (string $id) => $this->container->get($id),
+                fn (string $id): mixed => $this->container->get($id),
             ),
         ];
     }

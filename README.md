@@ -21,6 +21,10 @@
 The package is an extension of the [Yii View Rendering Library](https://github.com/yiisoft/view/). This extension
 provides a `ViewRender` that would allow you to use [Twig](https://twig.symfony.com/) view template engine.
 
+## Requirements
+
+- PHP 8.0 or higher.
+
 ## Installation
 
 The package could be installed with composer:

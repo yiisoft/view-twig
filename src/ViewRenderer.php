@@ -22,11 +22,8 @@ use function str_replace;
  */
 final class ViewRenderer implements TemplateRendererInterface
 {
-    private Environment $environment;
-
-    public function __construct(Environment $environment)
+    public function __construct(private Environment $environment)
     {
-        $this->environment = $environment;
     }
 
     public function render(ViewInterface $view, string $template, array $parameters): string
@@ -42,12 +39,11 @@ final class ViewRenderer implements TemplateRendererInterface
 
         $obInitialLevel = ob_get_level();
         ob_start();
-        /** @psalm-suppress InvalidArgument */
-        PHP_VERSION_ID >= 80000 ? ob_implicit_flush(false) : ob_implicit_flush(0);
+        ob_implicit_flush(false);
 
         try {
             /** @psalm-suppress PossiblyInvalidFunctionCall */
-            $renderer->bindTo($view)($template, $parameters);
+            $renderer->bindTo($view)();
             return ob_get_clean();
         } catch (Throwable $e) {
             while (ob_get_level() > $obInitialLevel) {
