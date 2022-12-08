@@ -2,9 +2,10 @@
 
 ## 2.0.2 under development
 
-- Enh: Add composer require checker into CI
 - Enh #41: Add `yiisoft/view` of version `^5.0` and `^6.0` support (@vjik)
 - Chg #43: Raise minimum PHP version to `^8.0` (@xepozz, @rustamwin)
+- Chg #44: Update version of `yiisoft/view` to `^6.0|^7.0` (@rustamwin)
+- Chg #44: Update version of `psr/container` to `^2.0` (@rustamwin)
 
 ## 2.0.1 October 25, 2021
 
