@@ -2,9 +2,8 @@
 
 ## 2.0.2 under development
 
-- Enh #41: Add `yiisoft/view` of version `^5.0` and `^6.0` support (@vjik)
 - Chg #43: Raise minimum PHP version to `^8.0` (@xepozz, @rustamwin)
-- Chg #44: Update version of `yiisoft/view` to `^6.0|^7.0` (@rustamwin)
+- Chg #41, #44, #56: Update version of `yiisoft/view` to `^6.0|^7.0|^8.0` (@rustamwin, @vjik)
 - Enh #44: Add support `^2.0` version of `psr/container` (@rustamwin)
 
 ## 2.0.1 October 25, 2021
