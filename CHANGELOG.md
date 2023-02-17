@@ -1,9 +1,9 @@
 # Yii View Twig Renderer Change Log
 
-## 2.0.2 under development
+## 2.1.0 February 17, 2023
 
-- Chg #43: Raise minimum PHP version to `^8.0` (@xepozz, @rustamwin)
 - Chg #41, #44, #56: Update version of `yiisoft/view` to `^6.0|^7.0|^8.0` (@rustamwin, @vjik)
+- Chg #43: Raise minimum PHP version to `^8.0` (@xepozz, @rustamwin)
 - Enh #44: Add support `^2.0` version of `psr/container` (@rustamwin)
 
 ## 2.0.1 October 25, 2021
