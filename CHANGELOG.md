@@ -8,10 +8,7 @@
 
 ## 2.0.1 October 25, 2021
 
-- Chg #34: Adopt to changes in `yiisoft/view` `^4.0` (@vjik)
-
-## 2.0.1 October 25, 2021
-
+- Chg #34: Adapt to changes in `yiisoft/view` `^4.0` (@vjik)
 - Chg #32: Use `yiisoft/view` `^3.0` (@rustamwin)
 
 ## 2.0.0 August 24, 2021
