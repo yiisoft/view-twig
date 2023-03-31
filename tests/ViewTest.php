@@ -119,6 +119,6 @@ final class ViewTest extends TestCase
             ->get('@views'), new SimpleEventDispatcher()))
             ->withRenderers(['twig' => new ViewRenderer($container->get(Environment::class))])
             ->withDefaultExtension('twig')
-            ;
+        ;
     }
 }
