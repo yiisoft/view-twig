@@ -12,13 +12,12 @@ use Yiisoft\Aliases\Aliases;
 use Yiisoft\Files\FileHelper;
 use Yiisoft\Test\Support\Container\SimpleContainer;
 use Yiisoft\Test\Support\EventDispatcher\SimpleEventDispatcher;
-use Yiisoft\View\TemplateRendererInterface;
-use Yiisoft\View\WebView;
-use Yiisoft\View\Twig\Extensions\YiiTwigExtension;
+use Yiisoft\View\Twig\TemplateRenderer;
 use Yiisoft\View\Twig\Tests\Support\BeginBody;
 use Yiisoft\View\Twig\Tests\Support\EndBody;
 use Yiisoft\View\Twig\Tests\Support\ErrorContent;
-use Yiisoft\View\Twig\ViewRenderer;
+use Yiisoft\View\Twig\Tests\Support\SimpleExtension;
+use Yiisoft\View\WebView;
 
 final class ViewTest extends TestCase
 {
@@ -55,24 +54,11 @@ final class ViewTest extends TestCase
         $this->assertStringContainsString('End Body', $result);
     }
 
-    public function testExtension(): void
-    {
-        $container = $this->getContainer();
-        $extension = new YiiTwigExtension($container);
-        $functionGet = $extension->getFunctions()[0];
-
-        $this->assertSame($container->get(Aliases::class), ($functionGet->getCallable())(Aliases::class));
-        $this->assertSame($container->get(BeginBody::class), ($functionGet->getCallable())(BeginBody::class));
-        $this->assertSame($container->get(EndBody::class), ($functionGet->getCallable())(EndBody::class));
-        $this->assertSame($container->get(ErrorContent::class), ($functionGet->getCallable())(ErrorContent::class));
-        $this->assertSame($container->get(Environment::class), ($functionGet->getCallable())(Environment::class));
-    }
-
     public function testExceptionDuringRendering(): void
     {
         $container = $this->getContainer();
         $view = $this->getView($container);
-        $renderer = $container->get(TemplateRendererInterface::class);
+        $renderer = $container->get(TemplateRenderer::class);
 
         $obInitialLevel = ob_get_level();
 
@@ -102,10 +88,10 @@ final class ViewTest extends TestCase
             EndBody::class => new EndBody(),
             ErrorContent::class => new ErrorContent(),
             Environment::class => $twig,
-            TemplateRendererInterface::class => new ViewRenderer($twig),
+            TemplateRenderer::class => new TemplateRenderer($twig),
         ]);
 
-        $twig->addExtension(new YiiTwigExtension($container));
+        $twig->addExtension(new SimpleExtension($container));
 
         return $container;
     }
@@ -114,11 +100,8 @@ final class ViewTest extends TestCase
     {
         $container ??= $this->getContainer();
 
-        return (new WebView($container
-            ->get(Aliases::class)
-            ->get('@views'), new SimpleEventDispatcher()))
-            ->withRenderers(['twig' => new ViewRenderer($container->get(Environment::class))])
-            ->withDefaultExtension('twig')
-        ;
+        return (new WebView($container->get(Aliases::class)->get('@views'), new SimpleEventDispatcher()))
+            ->withRenderers(['twig' => new TemplateRenderer($container->get(Environment::class))])
+            ->withDefaultExtension('twig');
     }
 }

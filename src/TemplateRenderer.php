@@ -18,9 +18,9 @@ use function ob_start;
 use function str_replace;
 
 /**
- * ViewRenderer allows using Twig with a View service.
+ * TemplateRenderer allows using Twig with a View service.
  */
-final class ViewRenderer implements TemplateRendererInterface
+final class TemplateRenderer implements TemplateRendererInterface
 {
     public function __construct(private Environment $environment)
     {
@@ -30,9 +30,8 @@ final class ViewRenderer implements TemplateRendererInterface
     {
         $environment = $this->environment;
         $renderer = function () use ($view, $template, $parameters, $environment): void {
-            $template = str_replace('\\', '/', $template);
-            $basePath = str_replace('\\', '/', $view->getBasePath());
-            $file = str_replace($basePath, '', $template);
+            $template = str_replace([$view->getBasePath(), $view->getContext()?->getViewPath() ?? ''], '', $template);
+            $file = str_replace('\\', '/', $template);
 
             echo $environment->render($file, array_merge($parameters, ['this' => $view]));
         };
@@ -42,7 +41,7 @@ final class ViewRenderer implements TemplateRendererInterface
         ob_implicit_flush(false);
 
         try {
-            /** @psalm-suppress PossiblyInvalidFunctionCall */
+            /** @psalm-suppress PossiblyInvalidFunctionCall,PossiblyNullFunctionCall */
             $renderer->bindTo($view)();
             return ob_get_clean();
         } catch (Throwable $e) {
