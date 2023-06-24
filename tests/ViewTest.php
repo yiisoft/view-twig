@@ -12,6 +12,7 @@ use Yiisoft\Aliases\Aliases;
 use Yiisoft\Files\FileHelper;
 use Yiisoft\Test\Support\Container\SimpleContainer;
 use Yiisoft\Test\Support\EventDispatcher\SimpleEventDispatcher;
+use Yiisoft\View\Template;
 use Yiisoft\View\Twig\TemplateRenderer;
 use Yiisoft\View\Twig\Tests\Support\BeginBody;
 use Yiisoft\View\Twig\Tests\Support\EndBody;
@@ -63,7 +64,7 @@ final class ViewTest extends TestCase
         $obInitialLevel = ob_get_level();
 
         try {
-            $renderer->render($view, __DIR__ . '/public/views/error.twig', []);
+            $renderer->render(new Template(__DIR__ . '/public/views/error.twig', [], $view));
         } catch (RuntimeError) {
         }
 

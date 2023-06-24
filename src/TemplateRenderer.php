@@ -6,8 +6,8 @@ namespace Yiisoft\View\Twig;
 
 use Throwable;
 use Twig\Environment;
+use Yiisoft\View\Template;
 use Yiisoft\View\TemplateRendererInterface;
-use Yiisoft\View\ViewInterface;
 
 use function array_merge;
 use function ob_end_clean;
@@ -26,23 +26,21 @@ final class TemplateRenderer implements TemplateRendererInterface
     {
     }
 
-    public function render(ViewInterface $view, string $template, array $parameters): string
+    public function render(Template $template): string
     {
-        $environment = $this->environment;
-        $renderer = function () use ($view, $template, $parameters, $environment): void {
-            $template = str_replace([$view->getBasePath(), $view->getContext()?->getViewPath() ?? ''], '', $template);
-            $file = str_replace('\\', '/', $template);
-
-            echo $environment->render($file, array_merge($parameters, ['this' => $view]));
-        };
+        $view = $template->getView();
+        $templateFile = str_replace(
+            [$view->getBasePath(), $template->getViewContext()?->getViewPath() ?? ''],
+            '',
+            $template->getTemplate()
+        );
 
         $obInitialLevel = ob_get_level();
         ob_start();
         ob_implicit_flush(false);
 
         try {
-            /** @psalm-suppress PossiblyInvalidFunctionCall,PossiblyNullFunctionCall */
-            $renderer->bindTo($view)();
+            $this->environment->display($templateFile, array_merge($template->getParameters(), ['this' => $view]));
             return ob_get_clean();
         } catch (Throwable $e) {
             while (ob_get_level() > $obInitialLevel) {
