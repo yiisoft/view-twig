@@ -20,7 +20,7 @@ use Yiisoft\View\Twig\Tests\Support\ErrorContent;
 use Yiisoft\View\Twig\Tests\Support\SimpleExtension;
 use Yiisoft\View\WebView;
 
-final class ViewTest extends TestCase
+final class TemplateRendererTest extends TestCase
 {
     private string $layoutPath;
     private string $tempDirectory;
@@ -64,7 +64,7 @@ final class ViewTest extends TestCase
         $obInitialLevel = ob_get_level();
 
         try {
-            $renderer->render(new Template(__DIR__ . '/public/views/error.twig', [], $view));
+            $renderer->render(new Template('error.twig', [], $view));
         } catch (RuntimeError) {
         }
 
