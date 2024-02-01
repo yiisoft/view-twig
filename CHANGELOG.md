@@ -2,7 +2,8 @@
 
 ## 2.1.1 under development
 
-- no changes in this release.
+- Chg #61: Rename `ViewRenderer` to more understandable `TemplateRenderer` (@rustamwin)
+- Chg #61: Remove `YiiTwigExtension` (@rustamwin)
 
 ## 2.1.0 February 17, 2023
 

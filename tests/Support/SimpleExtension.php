@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yiisoft\View\Twig\Extensions;
+namespace Yiisoft\View\Twig\Tests\Support;
 
 use Psr\Container\ContainerInterface;
 use Twig\Extension\AbstractExtension;
@@ -11,7 +11,7 @@ use Twig\TwigFunction;
 /**
  * YiiTwigExtension adds additional functionality to the Twig engine.
  */
-final class YiiTwigExtension extends AbstractExtension
+final class SimpleExtension extends AbstractExtension
 {
     public function __construct(private ContainerInterface $container)
     {

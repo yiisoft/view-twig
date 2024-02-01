@@ -19,7 +19,7 @@
 [![type-coverage](https://shepherd.dev/github/yiisoft/view-twig/coverage.svg)](https://shepherd.dev/github/yiisoft/view-twig)
 
 The package is an extension of the [Yii View Rendering Library](https://github.com/yiisoft/view/). This extension
-provides a `ViewRender` that would allow you to use [Twig](https://twig.symfony.com/) view template engine.
+provides a `TemplateRenderer` that would allow you to use [Twig](https://twig.symfony.com/) view template engine.
 
 ## Requirements
 
@@ -30,7 +30,7 @@ provides a `ViewRender` that would allow you to use [Twig](https://twig.symfony.
 The package could be installed with composer:
 
 ```
-composer require yiisoft/view-twig --prefer-dist
+composer require yiisoft/view-twig
 ```
 
 ## General usage
@@ -42,58 +42,48 @@ In your application, you should specify the configuration for `Twig`
 use Psr\Container\ContainerInterface;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Twig\Loader\LoaderInterface;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\View\Twig\Extensions\YiiTwigExtension;
-   
+
+/** @var array $params */
+
 return [
-    Environment::class => static function (ContainerInterface $container): Environment {
-        $loader = new FilesystemLoader($container
-            ->get(Aliases::class)
-            ->get('@views'));
-
-        $twig = new Environment($loader, [
-            'cache' => $container
-                ->get(Aliases::class)
-                ->get('@runtime/cache/twig'),
-            'charset' => 'utf-8',
-        ]);
-
-        $twig->addExtension(new YiiTwigExtension($container));
-        return $twig;
-    },
+    LoaderInterface::class => static fn (Aliases $aliases) => new FilesystemLoader($aliases->get('@views'))
+    Environment::class => [
+        '__construct()' => ['options' => $params['yiisoft/view-twig']['options']]
+    ],
 ];
 ```
 
-And also override the configuration for `WebView` (by default, this is `config/packages/yiisoft/view/web.php`):
+And also add the parameters for `WebView` and `Environment` in `params.php`:
 
 ```php
 use Psr\Container\ContainerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Twig\Environment;
 use Yiisoft\Aliases\Aliases;
+use Yiisoft\Definitions\DynamicReference;
+use Yiisoft\Definitions\Reference;
 use Yiisoft\View\WebView;
-use Yiisoft\View\Twig\ViewRenderer;
-
-/** @var array $params */
+use Yiisoft\View\Twig\TemplateRenderer;
    
 return [
     //...
-    WebView::class => static function (ContainerInterface $container) use ($params): WebView {
-        $webView = new WebView(
-            $container
-                ->get(Aliases::class)
-                ->get('@views'),
-            $container->get(EventDispatcherInterface::class),
-        );
-
-        $webView = $webView
-            ->withDefaultExtension('twig')
-            ->withRenderers(['twig' => new ViewRenderer($container->get(Environment::class))])
-        ;
-
-        $webView->setCommonParameters($params['yiisoft/view']['commonParameters']);
-        return $webView;
-    },
+    'yiisoft/view' => [
+        'defaultExtension' => 'twig',
+        'renderers' => [
+            'twig' => Reference::to(TemplateRenderer::class),
+        ],
+    ],
+    'yiisoft/view-twig' => [
+        'options' => [
+            'cache' => DynamicReference::to(static fn (Aliases $aliases) => $aliases->get('@runtime/twig')),
+            'charset' => 'utf-8',
+            'debug' => $_ENV['YII_DEBUG'],
+            //...
+        ],
+    ],
     //...
 ];
 ```
@@ -101,13 +91,6 @@ return [
 ### Template
 
 All variables that were in the regular template are also available in the twig template.
-
-The `get(string $id);` function allows you to get the definition that was set by the container,
-this function is available in all view templates and layouts:
-
-```twig
-{{ get('App\\Widget\\PerformanceMetrics').widget()|raw }}
-```
 
 The default main layout of the [application template](https://github.com/yiisoft/app) will look like this:
 
