@@ -18,7 +18,7 @@ use function ob_start;
 use function str_replace;
 
 /**
- * ViewRenderer allows using Twig with a View service.
+ * `ViewRenderer` allows using Twig with a View service.
  */
 final class ViewRenderer implements TemplateRendererInterface
 {
@@ -42,7 +42,7 @@ final class ViewRenderer implements TemplateRendererInterface
         ob_implicit_flush(false);
 
         try {
-            /** @psalm-suppress PossiblyInvalidFunctionCall */
+            /** @psalm-suppress PossiblyInvalidFunctionCall,PossiblyNullFunctionCall */
             $renderer->bindTo($view)();
             return ob_get_clean();
         } catch (Throwable $e) {
