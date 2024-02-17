@@ -28,7 +28,7 @@
         "rector/rector": "^1.0",
         "roave/infection-static-analysis-plugin": "^1.16",
         "spatie/phpunit-watcher": "^1.23",
-        "vimeo/psalm": "^4.30|^5.1",
+        "vimeo/psalm": "^4.30|^5.22",
         "yiisoft/aliases": "^3.0",
         "yiisoft/psr-dummy-provider": "^1.0",
         "yiisoft/test-support": "^3.0"
