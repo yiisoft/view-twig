@@ -1,9 +1,9 @@
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://yiisoft.github.io/docs/images/yii_logo.svg" height="100px">
+        <img src="https://yiisoft.github.io/docs/images/yii_logo.svg" height="100px" alt="Yii">
     </a>
     <a href="https://twig.symfony.com/" target="_blank">
-        <img src="https://twig.symfony.com/images/twig-logo.png" height="100px">
+        <img src="https://twig.symfony.com/images/twig-logo.png" height="100px" alt="Twig">
     </a>
     <h1 align="center">Yii View Twig Renderer</h1>
     <br>
@@ -223,7 +223,7 @@ You may also check out other [Yii Community Resources](https://www.yiiframework.
 
 ## License
 
-The Yii Framework Twig Extension is free software. It is released under the terms of the BSD License.
+The Yii View Twig Renderer is free software. It is released under the terms of the BSD License.
 Please see [`LICENSE`](./LICENSE.md) for more information.
 
 Maintained by [Yii Software](https://www.yiiframework.com/).
