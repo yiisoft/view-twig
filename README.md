@@ -1,9 +1,9 @@
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://yiisoft.github.io/docs/images/yii_logo.svg" height="100px">
+        <img src="https://yiisoft.github.io/docs/images/yii_logo.svg" height="100px" alt="Yii">
     </a>
     <a href="https://twig.symfony.com/" target="_blank">
-        <img src="https://twig.symfony.com/images/twig-logo.png" height="100px">
+        <img src="https://twig.symfony.com/images/twig-logo.png" height="80px" alt="Twig">
     </a>
     <h1 align="center">Yii View Twig Renderer</h1>
     <br>
