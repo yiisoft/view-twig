@@ -11,7 +11,6 @@ use Twig\Loader\FilesystemLoader;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Files\FileHelper;
 use Yiisoft\Test\Support\Container\SimpleContainer;
-use Yiisoft\Test\Support\EventDispatcher\SimpleEventDispatcher;
 use Yiisoft\View\TemplateRendererInterface;
 use Yiisoft\View\WebView;
 use Yiisoft\View\Twig\Extensions\YiiTwigExtension;
@@ -43,11 +42,11 @@ final class ViewTest extends TestCase
     {
         $content = $this
             ->getView()
-            ->render('/index.twig', ['name' => 'Javharbek Abdulatipov']);
+            ->render('index.twig', ['name' => 'Javharbek Abdulatipov']);
 
         $result = $this
             ->getView()
-            ->renderFile($this->layoutPath, ['content' => $content]);
+            ->render($this->layoutPath, ['content' => $content]);
 
         $this->assertStringContainsString('Begin Body', $result);
         $this->assertStringContainsString('Javharbek Abdulatipov', $result);
@@ -114,11 +113,8 @@ final class ViewTest extends TestCase
     {
         $container ??= $this->getContainer();
 
-        return (new WebView($container
-            ->get(Aliases::class)
-            ->get('@views'), new SimpleEventDispatcher()))
+        return (new WebView($container->get(Aliases::class)->get('@views')))
             ->withRenderers(['twig' => new ViewRenderer($container->get(Environment::class))])
-            ->withDefaultExtension('twig')
-        ;
+            ->withFallbackExtension('twig');
     }
 }

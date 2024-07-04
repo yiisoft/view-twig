@@ -2,7 +2,7 @@
 
 ## 2.1.1 under development
 
-- no changes in this release.
+- Chg #77: Raise required `yiisoft/view` version to `^10` (@vjik)
 
 ## 2.1.0 February 17, 2023
 
