@@ -114,11 +114,8 @@ final class ViewTest extends TestCase
     {
         $container ??= $this->getContainer();
 
-        return (new WebView($container
-            ->get(Aliases::class)
-            ->get('@views'), new SimpleEventDispatcher()))
+        return (new WebView($container->get(Aliases::class)->get('@views')))
             ->withRenderers(['twig' => new ViewRenderer($container->get(Environment::class))])
-            ->withDefaultExtension('twig')
-        ;
+            ->withFallbackExtension('twig');
     }
 }
