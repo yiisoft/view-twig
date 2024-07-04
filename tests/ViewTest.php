@@ -43,11 +43,11 @@ final class ViewTest extends TestCase
     {
         $content = $this
             ->getView()
-            ->render('/index.twig', ['name' => 'Javharbek Abdulatipov']);
+            ->render('index.twig', ['name' => 'Javharbek Abdulatipov']);
 
         $result = $this
             ->getView()
-            ->renderFile($this->layoutPath, ['content' => $content]);
+            ->render($this->layoutPath, ['content' => $content]);
 
         $this->assertStringContainsString('Begin Body', $result);
         $this->assertStringContainsString('Javharbek Abdulatipov', $result);

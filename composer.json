@@ -30,15 +30,15 @@
         "php": "^8.0",
         "psr/container": "^1.0|^2.0",
         "twig/twig": "^3.3",
-        "yiisoft/view": "^10.0.0"
+        "yiisoft/view": "^10"
     },
     "require-dev": {
         "maglnet/composer-require-checker": "^4.4",
         "phpunit/phpunit": "^9.5",
-        "rector/rector": "^1.0",
+        "rector/rector": "^1.2",
         "roave/infection-static-analysis-plugin": "^1.16",
         "spatie/phpunit-watcher": "^1.23",
-        "vimeo/psalm": "^4.30|^5.22",
+        "vimeo/psalm": "^4.30|^5.25",
         "yiisoft/aliases": "^3.0",
         "yiisoft/psr-dummy-provider": "^1.0",
         "yiisoft/test-support": "^3.0"
