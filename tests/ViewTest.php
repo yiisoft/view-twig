@@ -11,7 +11,6 @@ use Twig\Loader\FilesystemLoader;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Files\FileHelper;
 use Yiisoft\Test\Support\Container\SimpleContainer;
-use Yiisoft\Test\Support\EventDispatcher\SimpleEventDispatcher;
 use Yiisoft\View\TemplateRendererInterface;
 use Yiisoft\View\WebView;
 use Yiisoft\View\Twig\Extensions\YiiTwigExtension;
