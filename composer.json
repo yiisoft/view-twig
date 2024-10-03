@@ -30,7 +30,7 @@
         "php": "^8.0",
         "psr/container": "^1.0|^2.0",
         "twig/twig": "^3.3",
-        "yiisoft/view": "^10"
+        "yiisoft/view": "^11"
     },
     "require-dev": {
         "maglnet/composer-require-checker": "^4.4",
