@@ -23,7 +23,7 @@ provides a `ViewRender` that would allow you to use [Twig](https://twig.symfony.
 
 ## Requirements
 
-- PHP 8.1-8.4
+- PHP 8.1 - 8.4
 
 ## Installation
 
