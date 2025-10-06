@@ -30,12 +30,3 @@ composer.phar
 /phpunit.phar
 /phpunit.xml
 /.phpunit.cache
-
-# ignore dev installed apps and extensions
-/apps
-/extensions
-/packages
-
-# NPM packages
-/node_modules
-.env
