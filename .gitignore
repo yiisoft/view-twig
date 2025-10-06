@@ -9,18 +9,24 @@ nbproject
 .project
 .settings
 
+# sublime text project / workspace files
+*.sublime-project
+*.sublime-workspace
+
 # windows thumbnail cache
 Thumbs.db
+
+# composer vendor dir
+/vendor
+/composer.lock
+
+# composer itself is not needed
+composer.phar
 
 # Mac DS_Store Files
 .DS_Store
 
-# composer
-/vendor
-/composer.phar
-/composer.lock
-
-# phpunit
-phpunit.phar
+# PhpUnit
+/phpunit.phar
 /phpunit.xml
-.phpunit.result.cache
+/.phpunit.cache

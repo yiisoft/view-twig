@@ -109,7 +109,7 @@ final class ViewTest extends TestCase
         return $container;
     }
 
-    private function getView(SimpleContainer $container = null): WebView
+    private function getView(SimpleContainer|null $container = null): WebView
     {
         $container ??= $this->getContainer();
 

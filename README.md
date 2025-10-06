@@ -12,10 +12,9 @@
 [![Latest Stable Version](https://poser.pugx.org/yiisoft/view-twig/v)](https://packagist.org/packages/yiisoft/view-twig)
 [![Total Downloads](https://poser.pugx.org/yiisoft/view-twig/downloads)](https://packagist.org/packages/yiisoft/view-twig)
 [![Build status](https://github.com/yiisoft/view-twig/actions/workflows/build.yml/badge.svg)](https://github.com/yiisoft/view-twig/actions/workflows/build.yml)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yiisoft/view-twig/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yiisoft/view-twig/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/yiisoft/view-twig/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/yiisoft/view-twig/?branch=master)
+[![Code Coverage](https://codecov.io/gh/yiisoft/view-twig/graph/badge.svg?token=V9PmRxWk9L)](https://codecov.io/gh/yiisoft/view-twig)
 [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fyiisoft%2Fview-twig%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/yiisoft/view-twig/master)
-[![static analysis](https://github.com/yiisoft/view-twig/workflows/static%20analysis/badge.svg)](https://github.com/yiisoft/view-twig/actions?query=workflow%3A%22static+analysis%22)
+[![Static analysis](https://github.com/yiisoft/view-twig/actions/workflows/static.yml/badge.svg?branch=master)](https://github.com/yiisoft/view-twig/actions/workflows/static.yml?query=branch%3Amaster)
 [![type-coverage](https://shepherd.dev/github/yiisoft/view-twig/coverage.svg)](https://shepherd.dev/github/yiisoft/view-twig)
 
 The package is an extension of the [Yii View Rendering Library](https://github.com/yiisoft/view/). This extension
@@ -23,7 +22,7 @@ provides a `ViewRender` that would allow you to use [Twig](https://twig.symfony.
 
 ## Requirements
 
-- PHP 8.0 or higher.
+- PHP 8.1 - 8.4
 
 ## Installation
 

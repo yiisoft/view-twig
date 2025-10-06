@@ -27,18 +27,18 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "8.1 - 8.4",
         "psr/container": "^1.0|^2.0",
         "twig/twig": "^3.3",
-        "yiisoft/view": "^10"
+        "yiisoft/view": "^11|^12"
     },
     "require-dev": {
         "maglnet/composer-require-checker": "^4.4",
-        "phpunit/phpunit": "^9.5",
-        "rector/rector": "^2.0",
-        "roave/infection-static-analysis-plugin": "^1.16",
+        "phpunit/phpunit": "^10.5.48",
+        "rector/rector": "^2.1.2",
+        "roave/infection-static-analysis-plugin": "^1.35",
         "spatie/phpunit-watcher": "^1.23",
-        "vimeo/psalm": "^4.30|^5.25",
+        "vimeo/psalm": "^5.26.1 || ^6.8.9",
         "yiisoft/aliases": "^3.0",
         "yiisoft/psr-dummy-provider": "^1.0",
         "yiisoft/test-support": "^3.0"

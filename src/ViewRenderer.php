@@ -44,6 +44,10 @@ final class ViewRenderer implements TemplateRendererInterface
         try {
             /** @psalm-suppress PossiblyInvalidFunctionCall,PossiblyNullFunctionCall */
             $renderer->bindTo($view)();
+            /**
+             * @var string We assume that in this case active output buffer is always existed, so `ob_get_clean()`
+             * returns a string.
+             */
             return ob_get_clean();
         } catch (Throwable $e) {
             while (ob_get_level() > $obInitialLevel) {
