@@ -7,7 +7,6 @@ namespace Yiisoft\View\Twig;
 use Throwable;
 use Twig\Environment;
 use Yiisoft\View\TemplateRendererInterface;
-
 use Yiisoft\View\ViewInterface;
 
 use function array_merge;
@@ -41,6 +40,11 @@ final class TemplateRenderer implements TemplateRendererInterface
 
         try {
             $this->environment->display($templateFile, array_merge($parameters, ['this' => $view]));
+
+            /**
+             * @var string We assume that in this case active output buffer is always existed, so `ob_get_clean()`
+             * returns a string.
+             */
             return ob_get_clean();
         } catch (Throwable $e) {
             while (ob_get_level() > $obInitialLevel) {

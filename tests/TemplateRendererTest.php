@@ -11,7 +11,6 @@ use Twig\Loader\FilesystemLoader;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Files\FileHelper;
 use Yiisoft\Test\Support\Container\SimpleContainer;
-use Yiisoft\View\Template;
 use Yiisoft\View\Twig\TemplateRenderer;
 use Yiisoft\View\Twig\Tests\Support\BeginBody;
 use Yiisoft\View\Twig\Tests\Support\EndBody;
