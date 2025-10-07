@@ -6,8 +6,9 @@ namespace Yiisoft\View\Twig;
 
 use Throwable;
 use Twig\Environment;
-use Yiisoft\View\Template;
 use Yiisoft\View\TemplateRendererInterface;
+
+use Yiisoft\View\ViewInterface;
 
 use function array_merge;
 use function ob_end_clean;
@@ -22,17 +23,16 @@ use function str_replace;
  */
 final class TemplateRenderer implements TemplateRendererInterface
 {
-    public function __construct(private Environment $environment)
+    public function __construct(private readonly Environment $environment)
     {
     }
 
-    public function render(Template $template): string
+    public function render(ViewInterface $view, string $template, array $parameters): string
     {
-        $view = $template->getView();
         $templateFile = str_replace(
-            [$view->getBasePath(), $template->getViewContext()?->getViewPath() ?? ''],
+            $view->getBasePath(),
             '',
-            $template->getTemplate()
+            $template
         );
 
         $obInitialLevel = ob_get_level();
@@ -40,7 +40,7 @@ final class TemplateRenderer implements TemplateRendererInterface
         ob_implicit_flush(false);
 
         try {
-            $this->environment->display($templateFile, array_merge($template->getParameters(), ['this' => $view]));
+            $this->environment->display($templateFile, array_merge($parameters, ['this' => $view]));
             return ob_get_clean();
         } catch (Throwable $e) {
             while (ob_get_level() > $obInitialLevel) {

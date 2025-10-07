@@ -63,7 +63,7 @@ final class TemplateRendererTest extends TestCase
         $obInitialLevel = ob_get_level();
 
         try {
-            $renderer->render(new Template('error.twig', [], $view));
+            $renderer->render($view, 'error.twig', []);
         } catch (RuntimeError) {
         }
 
