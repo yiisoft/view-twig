@@ -11,14 +11,14 @@ use Twig\Loader\FilesystemLoader;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Files\FileHelper;
 use Yiisoft\Test\Support\Container\SimpleContainer;
-use Yiisoft\View\Twig\TemplateRenderer;
+use Yiisoft\View\Twig\TwigTemplateRenderer;
 use Yiisoft\View\Twig\Tests\Support\BeginBody;
 use Yiisoft\View\Twig\Tests\Support\EndBody;
 use Yiisoft\View\Twig\Tests\Support\ErrorContent;
 use Yiisoft\View\Twig\Tests\Support\SimpleExtension;
 use Yiisoft\View\WebView;
 
-final class TemplateRendererTest extends TestCase
+final class TwigTemplateRendererTest extends TestCase
 {
     private string $layoutPath;
     private string $tempDirectory;
@@ -57,7 +57,7 @@ final class TemplateRendererTest extends TestCase
     {
         $container = $this->getContainer();
         $view = $this->getView($container);
-        $renderer = $container->get(TemplateRenderer::class);
+        $renderer = $container->get(TwigTemplateRenderer::class);
 
         $obInitialLevel = ob_get_level();
 
@@ -87,7 +87,7 @@ final class TemplateRendererTest extends TestCase
             EndBody::class => new EndBody(),
             ErrorContent::class => new ErrorContent(),
             Environment::class => $twig,
-            TemplateRenderer::class => new TemplateRenderer($twig),
+            TwigTemplateRenderer::class => new TwigTemplateRenderer($twig),
         ]);
 
         $twig->addExtension(new SimpleExtension($container));
@@ -100,7 +100,7 @@ final class TemplateRendererTest extends TestCase
         $container ??= $this->getContainer();
 
         return (new WebView($container->get(Aliases::class)->get('@views')))
-            ->withRenderers(['twig' => new TemplateRenderer($container->get(Environment::class))])
+            ->withRenderers(['twig' => new TwigTemplateRenderer($container->get(Environment::class))])
             ->withFallbackExtension('twig');
     }
 }

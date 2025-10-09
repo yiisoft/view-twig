@@ -18,9 +18,9 @@ use function ob_start;
 use function str_replace;
 
 /**
- * TemplateRenderer allows using Twig with a View service.
+ * TwigTemplateRenderer allows using Twig with a View service.
  */
-final class TemplateRenderer implements TemplateRendererInterface
+final class TwigTemplateRenderer implements TemplateRendererInterface
 {
     public function __construct(private readonly Environment $environment)
     {

@@ -65,14 +65,14 @@ use Yiisoft\Aliases\Aliases;
 use Yiisoft\Definitions\DynamicReference;
 use Yiisoft\Definitions\Reference;
 use Yiisoft\View\WebView;
-use Yiisoft\View\Twig\TemplateRenderer;
+use Yiisoft\View\Twig\TwigTemplateRenderer;
    
 return [
     //...
     'yiisoft/view' => [
         'defaultExtension' => 'twig',
         'renderers' => [
-            'twig' => Reference::to(TemplateRenderer::class),
+            'twig' => Reference::to(TwigTemplateRenderer::class),
         ],
     ],
     'yiisoft/view-twig' => [
