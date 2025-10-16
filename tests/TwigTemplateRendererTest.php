@@ -12,10 +12,6 @@ use Yiisoft\Aliases\Aliases;
 use Yiisoft\Files\FileHelper;
 use Yiisoft\Test\Support\Container\SimpleContainer;
 use Yiisoft\View\Twig\TwigTemplateRenderer;
-use Yiisoft\View\Twig\Tests\Support\BeginBody;
-use Yiisoft\View\Twig\Tests\Support\EndBody;
-use Yiisoft\View\Twig\Tests\Support\ErrorContent;
-use Yiisoft\View\Twig\Tests\Support\SimpleExtension;
 use Yiisoft\View\WebView;
 
 final class TwigTemplateRendererTest extends TestCase
@@ -81,13 +77,11 @@ final class TwigTemplateRendererTest extends TestCase
 
         $twig = new Environment(new FilesystemLoader($aliases->get('@views')), ['charset' => 'utf-8']);
 
-        $container = new SimpleContainer([
+        return new SimpleContainer([
             Aliases::class => $aliases,
             Environment::class => $twig,
             TwigTemplateRenderer::class => new TwigTemplateRenderer($twig),
         ]);
-
-        return $container;
     }
 
     private function getView(SimpleContainer|null $container = null): WebView
