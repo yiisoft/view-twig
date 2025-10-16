@@ -18,7 +18,7 @@
 [![type-coverage](https://shepherd.dev/github/yiisoft/view-twig/coverage.svg)](https://shepherd.dev/github/yiisoft/view-twig)
 
 The package is an extension of the [Yii View Rendering Library](https://github.com/yiisoft/view/). This extension
-provides a `TemplateRenderer` that would allow you to use [Twig](https://twig.symfony.com/) view template engine.
+provides a `TwigTemplateRenderer` that would allow you to use [Twig](https://twig.symfony.com/) view template engine.
 
 ## Requirements
 
