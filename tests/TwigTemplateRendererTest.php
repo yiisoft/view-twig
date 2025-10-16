@@ -11,15 +11,10 @@ use Twig\Loader\FilesystemLoader;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Files\FileHelper;
 use Yiisoft\Test\Support\Container\SimpleContainer;
-use Yiisoft\View\TemplateRendererInterface;
+use Yiisoft\View\Twig\TwigTemplateRenderer;
 use Yiisoft\View\WebView;
-use Yiisoft\View\Twig\Extensions\YiiTwigExtension;
-use Yiisoft\View\Twig\Tests\Support\BeginBody;
-use Yiisoft\View\Twig\Tests\Support\EndBody;
-use Yiisoft\View\Twig\Tests\Support\ErrorContent;
-use Yiisoft\View\Twig\ViewRenderer;
 
-final class ViewTest extends TestCase
+final class TwigTemplateRendererTest extends TestCase
 {
     private string $layoutPath;
     private string $tempDirectory;
@@ -48,36 +43,23 @@ final class ViewTest extends TestCase
             ->getView()
             ->render($this->layoutPath, ['content' => $content]);
 
-        $this->assertStringContainsString('Begin Body', $result);
+        $this->assertStringContainsString('Yii Demo (Twig)', $result);
         $this->assertStringContainsString('Javharbek Abdulatipov', $result);
         $this->assertStringNotContainsString('{{ name }}', $result);
-        $this->assertStringContainsString('End Body', $result);
-    }
-
-    public function testExtension(): void
-    {
-        $container = $this->getContainer();
-        $extension = new YiiTwigExtension($container);
-        $functionGet = $extension->getFunctions()[0];
-
-        $this->assertSame($container->get(Aliases::class), ($functionGet->getCallable())(Aliases::class));
-        $this->assertSame($container->get(BeginBody::class), ($functionGet->getCallable())(BeginBody::class));
-        $this->assertSame($container->get(EndBody::class), ($functionGet->getCallable())(EndBody::class));
-        $this->assertSame($container->get(ErrorContent::class), ($functionGet->getCallable())(ErrorContent::class));
-        $this->assertSame($container->get(Environment::class), ($functionGet->getCallable())(Environment::class));
     }
 
     public function testExceptionDuringRendering(): void
     {
         $container = $this->getContainer();
         $view = $this->getView($container);
-        $renderer = $container->get(TemplateRendererInterface::class);
+        $renderer = $container->get(TwigTemplateRenderer::class);
 
         $obInitialLevel = ob_get_level();
 
         try {
-            $renderer->render($view, __DIR__ . '/public/views/error.twig', []);
+            $renderer->render($view, 'error.twig', []);
         } catch (RuntimeError) {
+            $this->assertSame(ob_get_level(), $obInitialLevel);
         }
 
         $this->assertSame(ob_get_level(), $obInitialLevel);
@@ -95,18 +77,11 @@ final class ViewTest extends TestCase
 
         $twig = new Environment(new FilesystemLoader($aliases->get('@views')), ['charset' => 'utf-8']);
 
-        $container = new SimpleContainer([
+        return new SimpleContainer([
             Aliases::class => $aliases,
-            BeginBody::class => new BeginBody(),
-            EndBody::class => new EndBody(),
-            ErrorContent::class => new ErrorContent(),
             Environment::class => $twig,
-            TemplateRendererInterface::class => new ViewRenderer($twig),
+            TwigTemplateRenderer::class => new TwigTemplateRenderer($twig),
         ]);
-
-        $twig->addExtension(new YiiTwigExtension($container));
-
-        return $container;
     }
 
     private function getView(SimpleContainer|null $container = null): WebView
@@ -114,7 +89,7 @@ final class ViewTest extends TestCase
         $container ??= $this->getContainer();
 
         return (new WebView($container->get(Aliases::class)->get('@views')))
-            ->withRenderers(['twig' => new ViewRenderer($container->get(Environment::class))])
+            ->withRenderers(['twig' => new TwigTemplateRenderer($container->get(Environment::class))])
             ->withFallbackExtension('twig');
     }
 }

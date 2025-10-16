@@ -18,32 +18,29 @@ use function ob_start;
 use function str_replace;
 
 /**
- * `ViewRenderer` allows using Twig with a View service.
+ * TwigTemplateRenderer allows using Twig with a View service.
  */
-final class ViewRenderer implements TemplateRendererInterface
+final class TwigTemplateRenderer implements TemplateRendererInterface
 {
-    public function __construct(private Environment $environment)
+    public function __construct(private readonly Environment $environment)
     {
     }
 
     public function render(ViewInterface $view, string $template, array $parameters): string
     {
-        $environment = $this->environment;
-        $renderer = function () use ($view, $template, $parameters, $environment): void {
-            $template = str_replace('\\', '/', $template);
-            $basePath = str_replace('\\', '/', $view->getBasePath());
-            $file = str_replace($basePath, '', $template);
-
-            echo $environment->render($file, array_merge($parameters, ['this' => $view]));
-        };
+        $templateFile = str_replace(
+            $view->getBasePath(),
+            '',
+            $template
+        );
 
         $obInitialLevel = ob_get_level();
         ob_start();
         ob_implicit_flush(false);
 
         try {
-            /** @psalm-suppress PossiblyInvalidFunctionCall,PossiblyNullFunctionCall */
-            $renderer->bindTo($view)();
+            echo $this->environment->render($templateFile, array_merge($parameters, ['this' => $view]));
+
             /**
              * @var string We assume that in this case active output buffer is always existed, so `ob_get_clean()`
              * returns a string.

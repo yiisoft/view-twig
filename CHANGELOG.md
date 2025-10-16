@@ -2,6 +2,8 @@
 
 ## 2.1.1 under development
 
+- Chg #61: Rename `ViewRenderer` to more understandable `TwigTemplateRenderer` (@rustamwin)
+- Chg #61: Remove `YiiTwigExtension` (@rustamwin)
 - Chg #77, #86: Update version of `yiisoft/view` to `^11|^12` (@rustamwin, @vjik)
 - Chg #86: Raise the minimum PHP version to `^8.1` (@rustamwin)
 - Chg #86: Change PHP constraint in `composer.json` to `8.1 - 8.4` (@rustamwin)
