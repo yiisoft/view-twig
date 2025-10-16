@@ -39,7 +39,7 @@ final class TwigTemplateRenderer implements TemplateRendererInterface
         ob_implicit_flush(false);
 
         try {
-            $this->environment->display($templateFile, array_merge($parameters, ['this' => $view]));
+            echo $this->environment->render($templateFile, array_merge($parameters, ['this' => $view]));
 
             /**
              * @var string We assume that in this case active output buffer is always existed, so `ob_get_clean()`

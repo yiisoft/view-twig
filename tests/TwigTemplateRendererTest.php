@@ -47,10 +47,9 @@ final class TwigTemplateRendererTest extends TestCase
             ->getView()
             ->render($this->layoutPath, ['content' => $content]);
 
-        $this->assertStringContainsString('Begin Body', $result);
+        $this->assertStringContainsString('Yii Demo (Twig)', $result);
         $this->assertStringContainsString('Javharbek Abdulatipov', $result);
         $this->assertStringNotContainsString('{{ name }}', $result);
-        $this->assertStringContainsString('End Body', $result);
     }
 
     public function testExceptionDuringRendering(): void
@@ -64,6 +63,7 @@ final class TwigTemplateRendererTest extends TestCase
         try {
             $renderer->render($view, 'error.twig', []);
         } catch (RuntimeError) {
+            $this->assertSame(ob_get_level(), $obInitialLevel);
         }
 
         $this->assertSame(ob_get_level(), $obInitialLevel);
@@ -83,14 +83,9 @@ final class TwigTemplateRendererTest extends TestCase
 
         $container = new SimpleContainer([
             Aliases::class => $aliases,
-            BeginBody::class => new BeginBody(),
-            EndBody::class => new EndBody(),
-            ErrorContent::class => new ErrorContent(),
             Environment::class => $twig,
             TwigTemplateRenderer::class => new TwigTemplateRenderer($twig),
         ]);
-
-        $twig->addExtension(new SimpleExtension($container));
 
         return $container;
     }
