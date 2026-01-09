@@ -22,7 +22,7 @@ provides a `TwigTemplateRenderer` that would allow you to use [Twig](https://twi
 
 ## Requirements
 
-- PHP 8.1 - 8.4
+- PHP 8.1 - 8.5
 
 ## Installation
 
