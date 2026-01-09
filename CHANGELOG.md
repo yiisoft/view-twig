@@ -1,5 +1,9 @@
 # Yii View Twig Renderer Change Log
 
+## 3.0.1 under development
+
+- no changes in this release.
+
 ## 3.0.0 January 09, 2026
 
 - Chg #61: Rename `ViewRenderer` to more understandable `TwigTemplateRenderer` (@rustamwin)
