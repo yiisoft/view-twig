@@ -2,7 +2,7 @@
 
 ## 3.0.1 under development
 
-- no changes in this release.
+- Chg #89: Add CI job to cover lowest-dependency build (yiisoft/view v9) (@vardumper)
 
 ## 3.0.0 January 09, 2026
 

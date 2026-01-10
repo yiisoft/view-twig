@@ -24,7 +24,7 @@ final class TwigTemplateRendererTest extends TestCase
         parent::setUp();
         $this->tempDirectory = __DIR__ . '/public/tmp/View';
         FileHelper::ensureDirectory($this->tempDirectory);
-        $this->layoutPath = dirname(__DIR__) . '/tests/public/views/layout.twig';
+        $this->layoutPath = 'layout.twig';
     }
 
     protected function tearDown(): void
@@ -87,8 +87,10 @@ final class TwigTemplateRendererTest extends TestCase
     private function getView(SimpleContainer|null $container = null): WebView
     {
         $container ??= $this->getContainer();
+        $basePath = $container->get(Aliases::class)->get('@views');
 
-        return (new WebView($container->get(Aliases::class)->get('@views')))
+        return (new WebView($basePath))
+            ->withContextPath($basePath)
             ->withRenderers(['twig' => new TwigTemplateRenderer($container->get(Environment::class))])
             ->withFallbackExtension('twig');
     }
