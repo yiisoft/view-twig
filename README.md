@@ -23,7 +23,6 @@ provides a `TwigTemplateRenderer` that would allow you to use [Twig](https://twi
 ## Requirements
 
 - PHP 8.1 - 8.5
-- yiisoft/view ^9|^10|^11|^12
 
 ## Installation
 
@@ -39,10 +38,6 @@ In your application, you should specify the configuration for `Twig`
 (by default, this is `config/common/di/view-twig.php`):
 
 ```php
-<?php
-
-declare(strict_types=1);
-
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Twig\Loader\LoaderInterface;
@@ -105,11 +100,7 @@ return [
 ];
 ```
 
-In your controller and/or request action, set your correct templates.
-
 ### Template
-
-> For `yiisoft/view` 9.x, configure the view context path (for example, to your `@views` directory) or prefix template names with `//` so relative names like `index.twig` can be resolved.
 
 All variables that were in the regular template are also available in the twig template.
 
@@ -117,7 +108,6 @@ The default main layout of the [application template](https://github.com/yiisoft
 
 ```twig
 {% do assetManager.register('App\\Web\\Shared\\Layout\\Main\\MainAsset') %}
-{# {% do assetManager.register('App\\Asset\\CdnFontAwesomeAsset') %} #}
 {% do this.addCssFiles(assetManager.getCssFiles()) %}
 {% do this.addCssStrings(assetManager.getCssStrings()) %}
 {% do this.addJsFiles(assetManager.getJsFiles()) %}

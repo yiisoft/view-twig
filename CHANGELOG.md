@@ -1,6 +1,10 @@
 # Yii View Twig Renderer Change Log
 
-## 2.1.1 under development
+## 3.0.1 under development
+
+- no changes in this release.
+
+## 3.0.0 January 09, 2026
 
 - Chg #61: Rename `ViewRenderer` to more understandable `TwigTemplateRenderer` (@rustamwin)
 - Chg #61: Remove `YiiTwigExtension` (@rustamwin)
@@ -8,6 +12,9 @@
 - Chg #86: Raise the minimum PHP version to `^8.1` (@rustamwin)
 - Chg #86: Change PHP constraint in `composer.json` to `8.1 - 8.5` (@rustamwin)
 - Chg: Add CI job to cover lowest-dependency build (yiisoft/view v9)
+- Chg #77, #86: Update version of `yiisoft/view` to `^11|^12` (@rustamwin, @vjik)
+- Chg #86, #88: Change PHP constraint in `composer.json` to `8.1 - 8.5` (@rustamwin, @vjik)
+- Chg #86: Raise the minimum PHP version to `^8.1` (@rustamwin)
 
 ## 2.1.0 February 17, 2023
 
