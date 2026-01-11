@@ -2,7 +2,7 @@
 
 ## 3.0.1 under development
 
-- Chg #89: Add CI job to cover lowest-dependency build (yiisoft/view v9) (@vardumper)
+- Chg #89: Add compatibility with Yii3, adjust templates in README.md (@vardumper, @vjik)
 
 ## 3.0.0 January 09, 2026
 
