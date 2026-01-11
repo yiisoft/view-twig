@@ -2,7 +2,7 @@
 
 ## 3.0.1 under development
 
-- Chg #89: Add compatibility with Yii3, adjust templates in README.md (@vardumper, @vjik)
+- Chg #89: Add compatibility with Yii3, fix templates in README.md, improve setup instructions (@vardumper, @vjik)
 
 ## 3.0.0 January 09, 2026
 
