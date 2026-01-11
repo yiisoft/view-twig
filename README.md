@@ -96,9 +96,23 @@ return [
             'debug' => $_ENV['APP_DEBUG'] ?? false,
         ],
     ],
+
+    'yiisoft/yii-view-renderer' => [
+        'viewPath' => '@views',
+        'layout' => '@views/layout.twig',
+        'injections' => [
+            Reference::to(CsrfViewInjection::class),
+        ],
+    ],
     // ...
 ];
 ```
+
+In your Controller Action or Response Handler, make sure yo use the desired Twig template:
+```php
+    return $this->viewRenderer->render('index.twig');
+```
+
 
 ### Template
 
@@ -157,7 +171,7 @@ The default main layout of the [application template](https://github.com/yiisoft
 
     <div class="content">
         <div class="content_i">
-            {{- content|raw -}}{% endblock -%}
+            {{- content|raw -}} 
         </div>
     </div>
 
