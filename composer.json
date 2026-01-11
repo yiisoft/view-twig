@@ -30,7 +30,7 @@
         "php": "8.1 - 8.5",
         "psr/container": "^1.0|^2.0",
         "twig/twig": "^3.3",
-        "yiisoft/view": "^9|^10|^11|^12"
+        "yiisoft/view": "^11|^12"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8.3",
