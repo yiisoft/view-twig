@@ -22,16 +22,14 @@ use function str_replace;
  */
 final class TwigTemplateRenderer implements TemplateRendererInterface
 {
-    public function __construct(private readonly Environment $environment)
-    {
-    }
+    public function __construct(private readonly Environment $environment) {}
 
     public function render(ViewInterface $view, string $template, array $parameters): string
     {
         $templateFile = str_replace(
             $view->getBasePath(),
             '',
-            $template
+            $template,
         );
 
         $obInitialLevel = ob_get_level();
