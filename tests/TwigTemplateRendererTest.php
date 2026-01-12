@@ -14,6 +14,8 @@ use Yiisoft\Test\Support\Container\SimpleContainer;
 use Yiisoft\View\Twig\TwigTemplateRenderer;
 use Yiisoft\View\WebView;
 
+use function dirname;
+
 final class TwigTemplateRendererTest extends TestCase
 {
     private string $layoutPath;
@@ -84,7 +86,7 @@ final class TwigTemplateRendererTest extends TestCase
         ]);
     }
 
-    private function getView(SimpleContainer|null $container = null): WebView
+    private function getView(?SimpleContainer $container = null): WebView
     {
         $container ??= $this->getContainer();
 
