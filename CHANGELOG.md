@@ -2,7 +2,7 @@
 
 ## 3.0.1 under development
 
-- Chg #89: Fix templates in README.md, improve setup instructions (@vardumper, @vjik)
+- no changes in this release.
 
 ## 3.0.0 January 09, 2026
 
