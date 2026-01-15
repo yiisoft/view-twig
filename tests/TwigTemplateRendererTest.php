@@ -67,6 +67,17 @@ final class TwigTemplateRendererTest extends TestCase
         $this->assertSame(ob_get_level(), $obInitialLevel);
     }
 
+    public function testRenderWithExceptionInTemplate(): void
+    {
+        $container = $this->getContainer();
+        $view = $this->getView($container);
+        $renderer = $container->get(TwigTemplateRenderer::class);
+
+        $this->expectException(RuntimeError::class);
+
+        $renderer->render($view, 'exception.twig', []);
+    }
+
     private function getContainer(): SimpleContainer
     {
         $aliases = new Aliases([
