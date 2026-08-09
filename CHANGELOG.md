@@ -2,7 +2,7 @@
 
 ## 3.0.1 under development
 
-- no changes in this release.
+- Enh #97: Remove unused `psr/container` dependency (@vjik)
 
 ## 3.0.0 January 09, 2026
 
